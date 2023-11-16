@@ -42,11 +42,11 @@ export function PlantList() {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {plants.map((plantId) => (
-                    <TableRow key={plantId.plantId}>
-                        <TableCell className="font-medium">{plantId.plantName}</TableCell>
-                        <TableCell>{plantId.plantLocation}</TableCell>
-                        <TableCell>{plantId.plantStatus}</TableCell>
+                {plants.map((plant) => (
+                    <TableRow key={plant.plantId}>
+                        <TableCell className="font-medium">{plant.plantName}</TableCell>
+                        <TableCell>{plant.plantLocation}</TableCell>
+                        <TableCell>{plant.plantStatus}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>
