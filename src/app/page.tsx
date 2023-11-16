@@ -3,7 +3,7 @@ import {PlantList} from "@/components/plant-list";
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <p>Hello world! This is Meta...</p>
+            <p>Hello world! This is the beginning of the Watering Schedule App...</p>
 
             <PlantList>
             </PlantList>
