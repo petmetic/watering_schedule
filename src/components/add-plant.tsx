@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/form"
 import {Input} from "@/components/ui/input"
 import {toast} from "@/components/ui/use-toast"
-import {Label} from "@/components/ui/label"
 import {Textarea} from "@/components/ui/textarea";
 
 const FormSchema = z.object({
@@ -53,8 +52,8 @@ export function PlantForm() {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
             ),
-        }),
-            console.log("Your form has been submitted")
+        });
+            console.log("Your form has been submitted", data)
     }
 
     return (
