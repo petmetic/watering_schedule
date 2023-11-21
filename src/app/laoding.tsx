@@ -1,5 +1,5 @@
-export default function Loading () {
-    return <p> Loading...</p>;
-}
+import PlantListSkeleton from "@/components/plant-list-skeleton";
 
-//TODO: skeleton for loading page (Chapter 9 - streaming)
+export default function Loading() {
+    return <PlantListSkeleton/>;
+}
