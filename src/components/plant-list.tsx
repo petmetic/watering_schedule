@@ -9,6 +9,8 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
+import Image from 'next/image';
+
 const plants = [
     {
         plantId: "001",
@@ -37,6 +39,7 @@ export function PlantList() {
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">Plant Name</TableHead>
+                    <TableHead>Image</TableHead>
                     <TableHead>Location</TableHead>
                     <TableHead>Status</TableHead>
                 </TableRow>
@@ -45,6 +48,13 @@ export function PlantList() {
                 {plants.map((plant) => (
                     <TableRow key={plant.plantId}>
                         <TableCell className="font-medium">{plant.plantName}</TableCell>
+                        <TableCell><Image
+                            src="/img.png"
+                            width={1000}
+                            height={760}
+                            className="hidden md:block"
+                            alt="Screenshots of the dashboard project showing desktop version"
+                        /></TableCell>
                         <TableCell>{plant.plantLocation}</TableCell>
                         <TableCell>{plant.plantStatus}</TableCell>
                     </TableRow>
