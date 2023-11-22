@@ -25,12 +25,14 @@ const FormSchema = z.object({
     plantLocation: z.string().min(2, {
         message: "Plant location must be at least 2 characters.",
     }),
-    wateringTime: z.number().min(1, {
+    wateringTime: z.coerce.number().min(1, {
         message: "Watering time should be an integer, specified in days.",
     }),
     plantInstructions: z.string().min(1, {
         message: "Please provide instructions for taking care of the plant.",
     }),
+    // plantStatus: z.enum(['pending', 'watered']),
+    startWateringDate: z.string(),
 })
 
 export function PlantForm() {
@@ -41,6 +43,8 @@ export function PlantForm() {
             plantLocation: "",
             wateringTime: 1,
             plantInstructions: "",
+            // plantStatus: '',
+            startWateringDate: "",
         },
     })
 
@@ -118,6 +122,22 @@ export function PlantForm() {
                             </FormControl>
                             <FormDescription>
                                 Insert instructions for taking care of plant.
+                            </FormDescription>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="startWateringDate"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Start watering date</FormLabel>
+                            <FormControl>
+                                <Input placeholder="24.5.2024"{...field} />
+                            </FormControl>
+                            <FormDescription>
+                                Insert date of beginning of watering.
                             </FormDescription>
                             <FormMessage/>
                         </FormItem>
