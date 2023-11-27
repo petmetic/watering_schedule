@@ -1,30 +1,22 @@
-import type {Metadata} from 'next'
-import {Inter} from 'next/font/google'
-import '../styles/globals.css'
-import {ReactNode} from "react";
-// import {Toaster} from "@/components/ui/toaster"
-
-const inter = Inter({subsets: ['latin']})
+import type { Metadata } from "next";
+import { inter } from "@/app/ui/fonts";
+import "../styles/globals.css";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-    title: {
-        template: '%s | Watering Schedule',
-        default: 'Watering Schedule'
-    },
-    description: 'a watering schedule for aliens living among us.',
-}
+  title: {
+    template: "%s | Watering Schedule",
+    default: "Watering Schedule",
+  },
+  description: "a watering schedule for aliens living among us.",
+};
 
-export default function RootLayout({children}: {
-    children: ReactNode
-}) {
-    return (
-        <html lang="en">
-        <body className={inter.className}>
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
         <main>{children}</main>
-        {/*<Toaster/>*/}
-        </body>
-        </html>
-    )
+      </body>
+    </html>
+  );
 }
-
-
