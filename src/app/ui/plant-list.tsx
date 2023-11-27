@@ -62,7 +62,7 @@ export function PlantList() {
             </TableBody>
             <TableFooter>
                 <TableRow>
-                    <TableCell colSpan={3}>To be watered:</TableCell>
+                    <TableCell colSpan={4}>To be watered:</TableCell>
                     <TableCell className="text-right">1</TableCell>
                 </TableRow>
             </TableFooter>

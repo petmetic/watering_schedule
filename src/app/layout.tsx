@@ -7,7 +7,10 @@ import {ReactNode} from "react";
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
-    title: 'Watering Schedule',
+    title: {
+        template: '%s | Watering Schedule',
+        default: 'Watering Schedule'
+    },
     description: 'a watering schedule for aliens living among us.',
 }
 

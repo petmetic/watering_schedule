@@ -1,5 +1,5 @@
-import {PlantList} from "@/components/plant-list";
-import {PlantForm} from "@/components/add-plant";
+import {PlantList} from "@/app/ui/plant-list";
+import {PlantForm} from "@/app/ui/add-plant";
 
 export default function Home() {
     return (
