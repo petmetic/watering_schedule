@@ -8,5 +8,3 @@ export default function Home() {
     </main>
   );
 }
-
-// <Button onClick={()=> console.log('Hello')}>Sigh IN</Button>

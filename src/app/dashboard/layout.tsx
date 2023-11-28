@@ -15,8 +15,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div>
       <div>
         <SideNav />
-        <PlantList />
       </div>
+      <div>{children}</div>
     </div>
   );
 }
