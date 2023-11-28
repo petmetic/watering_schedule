@@ -1,0 +1,31 @@
+{
+  "plants": [
+    {
+      "plantId": "001",
+      "plantName": "Pilea Peperomonia",
+      "plantLocation": "Living room hanging",
+      "wateringTime": 3,
+      "plantStatus": "Watered",
+      "instructions": "need to be watered with spray",
+      "plantImage": ""
+    },
+    {
+      "plantId": "002",
+      "plantName": "Acer campestre",
+      "plantLocation": "Book shelves",
+      "wateringTime": 5,
+      "plantStatus": "needs watering",
+      "instructions": "need to be watered with can",
+      "plantImage": ""
+    },
+    {
+      "plantId": "003",
+      "plantName": "Sansevieria trifaciata",
+      "plantLocation": "Book shelves",
+      "wateringTime": 1,
+      "plantStatus": "Watered",
+      "instructions": "need to be watered with spray",
+      "plantImage": ""
+    }
+  ]
+}
