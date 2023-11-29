@@ -11,14 +11,6 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>Dashboard view</h1>
       <br />
-      <br />
-      <br />
-      {/*<PlantForm />*/}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       {/*<PlantList />*/}
     </main>
   );
