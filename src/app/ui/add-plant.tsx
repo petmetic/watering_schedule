@@ -17,6 +17,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Add plant",
+};
 
 const FormSchema = z.object({
   plantName: z.string().min(2, {
