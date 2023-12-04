@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <p>Dashboard view</p>
+      <h1>Dashboard view</h1>
       <br />
       <br />
       <br />
