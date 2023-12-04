@@ -3,10 +3,11 @@ import { Metadata } from "next";
 import { PlantForm } from "@/app/ui/plants/add-plant";
 
 export const metadata: Metadata = {
-  title: "Add plant",
+  title: "Create plant",
 };
 
 export default function Page() {
+  // const plants = await fetchPlants();
   return (
     <main>
       <h1>Add new plant</h1>
@@ -15,4 +16,3 @@ export default function Page() {
       </div>
     </main>
   );
-}

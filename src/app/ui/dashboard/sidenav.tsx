@@ -19,12 +19,12 @@ import { AddIcon, EditIcon } from "@/components/ui/icons";
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Add new plant",
-    href: "/dashboard/plants/add",
+    href: "src/app/dashboard/plants/create",
     description: "Add a new plant to the list.",
   },
   {
     title: "Edit plant",
-    href: "/dashboard/plants/[id]/edit",
+    href: "src/app/dashboard/plants/[id]/edit",
     description: "Edit a plant from the list.",
   },
 ];
@@ -43,7 +43,7 @@ export default function SideNav() {
         </Link>
         <NavigationMenuList className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
           <NavigationMenuItem>
-            <Link href="/dashboard/plants/add/" legacyBehavior passHref>
+            <Link href="/dashboard/plants/create/" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 <AddIcon />
                 <div className="ml-4">Add new plant</div>
