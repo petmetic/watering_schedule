@@ -38,6 +38,7 @@ const FormSchema = z.object({
   }),
   // plantStatus: z.enum(['needs watering', 'watered']),
   startWateringDate: z.string(),
+  endWateringDate: z.string(),
 });
 
 export function PlantForm() {
@@ -50,6 +51,7 @@ export function PlantForm() {
       plantInstructions: "",
       // plantStatus: '',
       startWateringDate: "",
+      endWateringDate: "",
     },
   });
 
@@ -132,6 +134,20 @@ export function PlantForm() {
               <FormDescription>
                 Insert date of beginning of watering.
               </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="endWateringDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>End watering date</FormLabel>
+              <FormControl>
+                <Input placeholder="21.6.2024" {...field} />
+              </FormControl>
+              <FormDescription>Insert date of end of watering.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
