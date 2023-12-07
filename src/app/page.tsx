@@ -1,19 +1,9 @@
 import { PlantList } from "@/app/ui/plant-list";
-
-<
-<
-<
-<
-<
-<< HEAD
-  import {PlantForm} from "@/app/ui/plants/create-plant";
-======
-=
 import { PlantForm } from "@/app/ui/add-plant";
 import { Metadata } from "next";
 
 
-export const metadata: Metadata = {
+export const metadata: Metadata = {s
   title: "Home"
 };
 
