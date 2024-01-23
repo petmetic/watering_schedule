@@ -23,7 +23,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { toast } from "@/components/ui/use-toast";
+
+import * as React from "react";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import { Metadata } from "next";
 
 // export const metadata: Metadata = {
@@ -57,12 +69,10 @@ export function PlantForm() {
     defaultValues: {
       plantName: "",
       plantLocation: "",
-      frequency: 1,
       waterVolume: "",
       plantInstructions: "",
-      // plantStatus: '',
-      startWateringDate: "",
-      endWateringDate: "",
+      // startWateringDate: "",
+      // endWateringDate: "",
     },
   });
   const waterVolume = [
@@ -80,6 +90,8 @@ export function PlantForm() {
       name: "100 ml",
     },
   ];
+
+  const [date, setDate] = React.useState<Date>();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log("Your form has been submitted", data);
@@ -141,7 +153,7 @@ export function PlantForm() {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select the volume of water" />
+                    <SelectValue placeholder="100 ml" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -179,9 +191,37 @@ export function PlantForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Start watering date</FormLabel>
-              <FormControl>
-                <Input placeholder="24.5.2024" {...field} />
-              </FormControl>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[240px] pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground",
+                      )}
+                    >
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    disabled={(date) =>
+                      date > new Date() || date < new Date("1900-01-01")
+                    }
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
               <FormDescription>
                 Insert date of beginning of watering.
               </FormDescription>
@@ -195,9 +235,37 @@ export function PlantForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>End watering date</FormLabel>
-              <FormControl>
-                <Input placeholder="21.6.2024" {...field} />
-              </FormControl>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[240px] pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground",
+                      )}
+                    >
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    disabled={(date) =>
+                      date > new Date() || date < new Date("1900-01-01")
+                    }
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
               <FormDescription>Insert date of end of watering.</FormDescription>
               <FormMessage />
             </FormItem>
@@ -209,7 +277,7 @@ export function PlantForm() {
             <FormItem>
               <FormLabel>Plant Image</FormLabel>
               <Input id="image" type="file" />
-              <FormDescription>Choose which picture for plant.</FormDescription>
+              <FormDescription>Choose plant image.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

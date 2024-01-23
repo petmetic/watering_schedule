@@ -1,5 +1,5 @@
 import { PlantList } from "@/app/ui/plant-list";
-import { PlantForm } from "@/app/ui/plants/create-plant";
+import { PlantForm } from "@/app/ui/plants/add-plant";
 import { Suspense } from "react";
 import { DashboardSkeleton } from "@/app/ui/skeletons";
 import { Metadata } from "next";

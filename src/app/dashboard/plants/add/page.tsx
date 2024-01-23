@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Breadcrumbs from "@/app/ui/plants/breadcrumbs";
-import { PlantForm } from "@/app/ui/plants/create-plant";
+import { PlantForm } from "@/app/ui/plants/add-plant";
 
 export const metadata: Metadata = {
   title: "Create Plant",
@@ -14,8 +14,8 @@ export default function Page() {
         breadcrumbs={[
           { label: "Plants", href: "/dashboard/plants" },
           {
-            label: "Create Plant",
-            href: "/dashboard/plants/create",
+            label: "Add Plant",
+            href: "/dashboard/plants/add",
             active: true,
           },
         ]}
