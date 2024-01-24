@@ -50,14 +50,14 @@ export default function SideNav() {
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="#" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <EditIcon />
-                <div className="ml-4">Edit plant</div>
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+          {/*<NavigationMenuItem>*/}
+          {/*  <Link href="#" legacyBehavior passHref>*/}
+          {/*    <NavigationMenuLink className={navigationMenuTriggerStyle()}>*/}
+          {/*      <EditIcon />*/}
+          {/*      <div className="ml-4">Edit plant</div>*/}
+          {/*    </NavigationMenuLink>*/}
+          {/*  </Link>*/}
+          {/*</NavigationMenuItem>*/}
         </NavigationMenuList>
       </NavigationMenu>
     </div>

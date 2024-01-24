@@ -10,29 +10,10 @@ import {
 } from "@/components/ui/table";
 
 import Image from "next/image";
+import { GET } from "@/app/api/plants/route";
 
-const plants = [
-  {
-    plantId: "001",
-    plantName: "Pilea Peperomonia",
-    plantLocation: "Living room hanging",
-    plantStatus: "Watered",
-  },
-  {
-    plantId: "002",
-    plantName: "Acer campestre",
-    plantLocation: "Book shelves",
-    plantStatus: "needs watering",
-  },
-  {
-    plantId: "003",
-    plantName: "Sansevieria trifaciata",
-    plantLocation: "Book shelves",
-    plantStatus: "Watered",
-  },
-];
-
-export function PlantList() {
+export async function PlantList() {
+  const plants = await GET(Request);
   return (
     <Table>
       <TableCaption>List of plants</TableCaption>
@@ -46,19 +27,19 @@ export function PlantList() {
       </TableHeader>
       <TableBody>
         {plants.map((plant) => (
-          <TableRow key={plant.plantId}>
-            <TableCell className="font-medium">{plant.plantName}</TableCell>
+          <TableRow key={plant.id}>
+            <TableCell className="font-medium">{plant.name}</TableCell>
             <TableCell>
-              <Image
-                src="/img.png"
-                width={1000}
-                height={760}
-                className="hidden md:block"
-                alt="Screenshots of the dashboard project showing desktop version"
-              />
+              {/*<Image*/}
+              {/*  src="/img.png"*/}
+              {/*  width={1000}*/}
+              {/*  height={760}*/}
+              {/*  className="hidden md:block"*/}
+              {/*  alt="Screenshots of the dashboard project showing desktop version"*/}
+              {/*/>*/}
             </TableCell>
-            <TableCell>{plant.plantLocation}</TableCell>
-            <TableCell>{plant.plantStatus}</TableCell>
+            <TableCell>{plant.location}</TableCell>
+            {/*<TableCell>{plant.status}</TableCell>*/}
           </TableRow>
         ))}
       </TableBody>
