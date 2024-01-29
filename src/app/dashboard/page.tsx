@@ -1,5 +1,5 @@
 import { PlantList } from "@/app/ui/plant-list";
-import { PlantForm } from "@/app/ui/plants/create-plant";
+import { PlantForm } from "@/app/ui/plants/add-plant";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
