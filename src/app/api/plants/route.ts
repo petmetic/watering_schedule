@@ -1,4 +1,6 @@
-export async function GET(request: Request) {}
+export async function GET(request: Request, res: Response) {
+  console.log("GET REQUEST");
+}
 export async function HEAD(request: Request) {}
 
 export async function POST(request: Request) {}
