@@ -16,7 +16,7 @@ export default function Home() {
       <div>
         <Suspense fallback={<DashboardSkeleton />}></Suspense>
       </div>
-      {/*<PlantList />*/}
+      <PlantList />
     </main>
   );
 }

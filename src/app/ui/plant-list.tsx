@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 
 import Image from "next/image";
+import { GET } from "@/app/api/plants/route";
 
 export async function PlantList() {
   const plants = await GET();
@@ -29,8 +30,8 @@ export async function PlantList() {
       </TableHeader>
       <TableBody>
         {plants.map((plant) => (
-          <TableRow key={plant.plantId}>
-            <TableCell className="font-medium">{plant.plantName}</TableCell>
+          <TableRow key={plant.id}>
+            <TableCell className="font-medium">{plant.name}</TableCell>
             <TableCell>
               <Image
                 src={plant.photo}
