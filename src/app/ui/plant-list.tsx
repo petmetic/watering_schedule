@@ -10,32 +10,12 @@ import {
 } from "@/components/ui/table";
 
 import Image from "next/image";
-import { GET } from "@/app/api/plants/route";
 
-// const plants = [
-//   {
-//     id: "001",
-//     name: "Pilea Peperomonia",
-//     location: "Living room hanging",
-//     status: "Watered",
-//   },
-//   {
-//     id: "002",
-//     name: "Acer campestre",
-//     location: "Book shelves",
-//     status: "needs watering",
-//   },
-//   {
-//     id: "003",
-//     name: "Sansevieria trifaciata",
-//     location: "Book shelves",
-//     status: "Watered",
-//   },
-// ];
 export async function PlantList() {
   const plants = await GET();
   console.log(`These are from the plant-list page`);
   console.log(plants);
+
   return (
     <Table>
       <TableCaption>List of plants</TableCaption>
@@ -49,15 +29,15 @@ export async function PlantList() {
       </TableHeader>
       <TableBody>
         {plants.map((plant) => (
-          <TableRow key={plant.id}>
-            <TableCell className="font-medium">{plant.name}</TableCell>
+          <TableRow key={plant.plantId}>
+            <TableCell className="font-medium">{plant.plantName}</TableCell>
             <TableCell>
               <Image
-                src={plant.photourl}
+                src={plant.photo}
                 width={150}
                 height={150}
                 className="hidden md:block"
-                alt={`${plant.photourl}'s picture`}
+                alt={`${plant.photo}'s picture`}
               />
             </TableCell>
             <TableCell>{plant.location}</TableCell>
