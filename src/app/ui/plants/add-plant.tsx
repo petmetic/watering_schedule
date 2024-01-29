@@ -58,7 +58,7 @@ const FormSchema = z.object({
   plantInstructions: z.string().min(1, {
     message: "Please provide instructions for taking care of the plant.",
   }),
-  plantStatus: z.enum(["needs watering", "watered"]),
+  plantStatus: z.string(),
   startWateringDate: z.string(),
   endWateringDate: z.string(),
 });

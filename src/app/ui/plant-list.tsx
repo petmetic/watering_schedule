@@ -12,8 +12,30 @@ import {
 import Image from "next/image";
 import { GET } from "@/app/api/plants/route";
 
+// const plants = [
+//   {
+//     id: "001",
+//     name: "Pilea Peperomonia",
+//     location: "Living room hanging",
+//     status: "Watered",
+//   },
+//   {
+//     id: "002",
+//     name: "Acer campestre",
+//     location: "Book shelves",
+//     status: "needs watering",
+//   },
+//   {
+//     id: "003",
+//     name: "Sansevieria trifaciata",
+//     location: "Book shelves",
+//     status: "Watered",
+//   },
+// ];
 export async function PlantList() {
-  const plants = await GET(Request);
+  const plants = await GET();
+  console.log(`These are from the plant-list page`);
+  console.log(plants);
   return (
     <Table>
       <TableCaption>List of plants</TableCaption>
