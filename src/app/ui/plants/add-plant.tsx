@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -15,23 +15,33 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "@/components/ui/use-toast";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Add plant",
-};
-
+// export const metadata: Metadata = {
+//   title: "Add plant",
+// };
 const FormSchema = z.object({
+  plantId: z.number(),
   plantName: z.string().min(2, {
     message: "Plant name must be at least 2 characters.",
   }),
   plantLocation: z.string().min(2, {
     message: "Plant location must be at least 2 characters.",
   }),
-  wateringTime: z.coerce.number().min(1, {
+  frequency: z.coerce.number().min(1, {
     message: "Watering time should be an integer, specified in days.",
+  }),
+  waterVolume: z.string().min(1, {
+    message: "",
   }),
   plantInstructions: z.string().min(1, {
     message: "Please provide instructions for taking care of the plant.",
@@ -47,13 +57,29 @@ export function PlantForm() {
     defaultValues: {
       plantName: "",
       plantLocation: "",
-      wateringTime: 1,
+      frequency: 1,
+      waterVolume: "",
       plantInstructions: "",
       // plantStatus: '',
       startWateringDate: "",
       endWateringDate: "",
     },
   });
+  const waterVolume = [
+    {
+      value: "200_ml",
+      name: "200 ml",
+    },
+    {
+      value: "300_ml",
+      name: "300 ml",
+    },
+
+    {
+      value: "100_ml",
+      name: "100 ml",
+    },
+  ];
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log("Your form has been submitted", data);
@@ -92,16 +118,41 @@ export function PlantForm() {
         />
         <FormField
           control={form.control}
-          name="wateringTime"
+          name="frequency"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Watering Time</FormLabel>
+              <FormLabel>Watering frequency</FormLabel>
               <FormControl>
                 <Input placeholder="3" {...field} />
               </FormControl>
               <FormDescription>
                 Insert time in days for watering.
               </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="waterVolume"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Volume of water</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select the volume of water" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {waterVolume.map((waterVolume, index) => (
+                    <SelectItem key={index} value={waterVolume.value}>
+                      {waterVolume.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormDescription>Select amount of water.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

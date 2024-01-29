@@ -35,7 +35,7 @@ export default function SideNav() {
       <NavigationMenu className="flex h-full flex-col px-3 py-4 md:px-2">
         <Link
           className="mb-2 flex h-20 items-end justify-start rounded-md bg-green-600 p-4 md:h-40"
-          href="/"
+          href="/dashboard"
         >
           <div className="w-32 text-white md:w-40">
             <WsLogo />
