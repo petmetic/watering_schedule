@@ -1,5 +1,4 @@
 import { PlantList } from "@/app/ui/plant-list";
-
 import { Suspense } from "react";
 import { DashboardSkeleton } from "@/app/ui/skeletons";
 import { Metadata } from "next";

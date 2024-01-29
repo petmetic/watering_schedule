@@ -4,8 +4,12 @@ import { Metadata } from "next";
 import { PlantForm } from "@/app/ui/plants/add-plant";
 =======
 import Breadcrumbs from "@/app/ui/plants/breadcrumbs";
+<<<<<<< HEAD:src/app/dashboard/plants/create/page.tsx
 import { PlantForm } from "@/app/ui/plants/create-plant";
 >>>>>>> 19f3889 (rebase #5)
+=======
+import { PlantForm } from "@/app/ui/plants/add-plant";
+>>>>>>> f5b3fb5 (add plant form partial):src/app/dashboard/plants/add/page.tsx
 
 export const metadata: Metadata = {
   title: "Create Plant",
@@ -19,8 +23,8 @@ export default function Page() {
         breadcrumbs={[
           { label: "Plants", href: "/dashboard/plants" },
           {
-            label: "Create Plant",
-            href: "/dashboard/plants/create",
+            label: "Add Plant",
+            href: "/dashboard/plants/add",
             active: true,
           },
         ]}

@@ -1,6 +1,6 @@
 // import { Metadata } from "next";
 // import Breadcrumbs from "@/app/ui/plants/breadcrumbs";
-// import { PlantForm } from "@/app/ui/plants/create-plant";
+// import { PlantForm } from "@/app/ui/plants/add-plant";
 //
 // export const metadata: Metadata = {
 //   title: "Edit Plant",
@@ -15,7 +15,7 @@
 //           { label: "Plants", href: "/dashboard/plants" },
 //           {
 //             label: "Create Plant",
-//             href: "/dashboard/plants/create",
+//             href: "/dashboard/plants/add",
 //             active: true,
 //           },
 //           {
