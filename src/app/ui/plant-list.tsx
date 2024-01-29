@@ -52,16 +52,16 @@ export async function PlantList() {
           <TableRow key={plant.id}>
             <TableCell className="font-medium">{plant.name}</TableCell>
             <TableCell>
-              {/*<Image*/}
-              {/*  src="/img.png"*/}
-              {/*  width={1000}*/}
-              {/*  height={760}*/}
-              {/*  className="hidden md:block"*/}
-              {/*  alt="Screenshots of the dashboard project showing desktop version"*/}
-              {/*/>*/}
+              <Image
+                src={plant.photourl}
+                width={150}
+                height={150}
+                className="hidden md:block"
+                alt={`${plant.photourl}'s picture`}
+              />
             </TableCell>
             <TableCell>{plant.location}</TableCell>
-            {/*<TableCell>{plant.status}</TableCell>*/}
+            <TableCell>{plant.status}</TableCell>
           </TableRow>
         ))}
       </TableBody>
