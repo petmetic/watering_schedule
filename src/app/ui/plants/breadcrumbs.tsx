@@ -1,6 +1,5 @@
 import { clsx } from "clsx";
 import Link from "next/link";
-import { Inter } from "next/font/google";
 
 interface Breadcrumb {
   label: string;
