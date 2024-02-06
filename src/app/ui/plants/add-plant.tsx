@@ -37,13 +37,13 @@ import {
 } from "@/components/ui/popover";
 
 import { Metadata } from "next";
+import { POST } from "@/app/api/plants/route";
 
 export const metadata: Metadata = {
   title: "Add plant",
 };
 
 const FormSchema = z.object({
-  id: z.number().optional(),
   name: z.string().min(2, {
     message: "Plant name must be at least 2 characters.",
   }),
@@ -59,8 +59,12 @@ const FormSchema = z.object({
     message: "Please provide instructions for taking care of the plant.",
   }),
   status: z.string().optional(),
-  start: z.string(),
-  end: z.string(),
+  start: z.date({
+    required_error: "A start date is required.",
+  }),
+  end: z.date({
+    required_error: "An end date is required.",
+  }),
 });
 
 export function PlantForm() {
@@ -72,37 +76,37 @@ export function PlantForm() {
       frequency: "",
       volume: "",
       instructions: "",
-      start: "",
-      end: "",
+      // start: "",
+      // end: "",
     },
   });
   const waterVolume = [
     {
-      value: "200_ml",
+      value: "200 ml",
       name: "200 ml",
     },
     {
-      value: "300_ml",
+      value: "300 ml",
       name: "300 ml",
     },
 
     {
-      value: "100_ml",
+      value: "100 ml",
       name: "100 ml",
     },
   ];
 
   const location = [
     {
-      value: "living_room_black",
+      value: "living room black table & around",
       name: "living room black table & around",
     },
     {
-      value: "living_room_hanging",
+      value: "living room_hanging",
       name: "living room hanging",
     },
     {
-      value: "special_care",
+      value: "special care",
       name: "special care",
     },
   ];
@@ -111,6 +115,8 @@ export function PlantForm() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log("Your form has been submitted", data);
+    console.log(data.start);
+    const submit = POST(data);
   }
 
   return (
@@ -216,49 +222,37 @@ export function PlantForm() {
           control={form.control}
           name="start"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Start watering date</FormLabel>
+            <FormItem className="flex flex-col">
+              <FormLabel>Start of watering</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "w-[280px] justify-start text-left font-normal",
-                      !date && "text-muted-foreground",
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                  </Button>
+                  <FormControl>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[240px] pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground",
+                      )}
+                    >
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
-                  <Select
-                    onValueChange={(value) =>
-                      setDate(addDays(new Date(), parseInt(value)))
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="0">Today</SelectItem>
-                      <SelectItem value="1">Tomorrow</SelectItem>
-                      <SelectItem value="3">In 3 days</SelectItem>
-                      <SelectItem value="7">In a week</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <div className="rounded-md border">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                    />
-                  </div>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    initialFocus
+                  />
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                Pick beginning date of watering.
-              </FormDescription>
+              <FormDescription>Pick start of watering date.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -267,47 +261,37 @@ export function PlantForm() {
           control={form.control}
           name="end"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>End watering date</FormLabel>
+            <FormItem className="flex flex-col">
+              <FormLabel>End of watering</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "w-[280px] justify-start text-left font-normal",
-                      !date && "text-muted-foreground",
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                  </Button>
+                  <FormControl>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[240px] pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground",
+                      )}
+                    >
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
-                  <Select
-                    onValueChange={(value) =>
-                      setDate(addDays(new Date(), parseInt(value)))
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="0">Today</SelectItem>
-                      <SelectItem value="1">Tomorrow</SelectItem>
-                      <SelectItem value="3">In 3 days</SelectItem>
-                      <SelectItem value="7">In a week</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <div className="rounded-md border">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                    />
-                  </div>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    initialFocus
+                  />
                 </PopoverContent>
               </Popover>
-              <FormDescription>Pick end date of watering.</FormDescription>
+              <FormDescription>Pick end of watering date.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
