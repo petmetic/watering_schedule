@@ -26,16 +26,17 @@ export async function GET(request: Request) {
   return data.results;
 }
 
-export async function POST() {
-  const res = await fetch("http://127.0.0.1:8000/plants/?format=json", {
+export async function POST(form: {}) {
+  const res = await fetch("http://127.0.0.1:8000/plants/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       // 'API-KEY': process.env.DATA_API_KEY,
     },
-    // body: JSON.stringify({ plants: plants.toISOString() }),
+    body: JSON.stringify(form),
   });
   const data = await res.json();
-
+  console.log(`the form has been POSTED ${data}`);
+  console.log(data);
   return Response.json({ data });
 }
