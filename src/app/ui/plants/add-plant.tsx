@@ -65,6 +65,7 @@ const FormSchema = z.object({
   end: z.date({
     required_error: "An end date is required.",
   }),
+  photo: z.any(),
 });
 
 export function PlantForm() {
@@ -123,6 +124,7 @@ export function PlantForm() {
     <Form {...form}>
       <form
         encType="multipart/form-data"
+        id="add-plant"
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-2/3 space-y-6"
       >
@@ -301,17 +303,20 @@ export function PlantForm() {
           )}
         />
         <FormField
+          control={form.control}
           name="photo"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Plant Image</FormLabel>
-              <Input id="image" type="file" />
+              <Input id="photo" type="file" />
               <FormDescription>Choose plant image.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" value="save">
+          Submit
+        </Button>
       </form>
     </Form>
   );

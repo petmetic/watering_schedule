@@ -27,14 +27,19 @@ export async function GET(request: Request) {
   return data.results;
 }
 
-export async function POST(form: {}) {
-  const formData = new FormData();
+export async function POST(form: HTMLFormElement) {
+  const photoField = document.getElementById("photo") as HTMLInputElement;
+  const file = photoField?.files ? photoField.files[0] : null;
+  const addPlant = document.getElementById("add-plant") as HTMLFormElement;
+  const formData = new FormData(addPlant);
+  formData.append("photo", file, file.name);
+
+  console.log(formData);
+
   const res = await fetch("http://127.0.0.1:8000/plants/", {
     method: "POST",
     headers: {
-      "Content-Type": "multipart/form-data",
-      // boundary = "",
-      // 'API-KEY': process.env.DATA_API_KEY,
+      //   // 'API-KEY': process.env.DATA_API_KEY,
     },
     body: formData,
   });
