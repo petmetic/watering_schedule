@@ -102,7 +102,7 @@ export function PlantForm() {
       name: "living room black table & around",
     },
     {
-      value: "living room_hanging",
+      value: "living room hanging",
       name: "living room hanging",
     },
     {
@@ -121,7 +121,11 @@ export function PlantForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form
+        encType="multipart/form-data"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-2/3 space-y-6"
+      >
         <FormField
           control={form.control}
           name="name"
