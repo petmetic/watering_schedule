@@ -11,6 +11,7 @@ import {
 
 import Image from "next/image";
 import { GET } from "@/app/api/plants/route";
+import { Button } from "@/components/ui/button";
 
 export async function PlantList() {
   const plants = await GET();
@@ -42,7 +43,9 @@ export async function PlantList() {
               />
             </TableCell>
             <TableCell>{plant.location}</TableCell>
-            <TableCell>{plant.status}</TableCell>
+            <TableCell>
+              <Button />
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
