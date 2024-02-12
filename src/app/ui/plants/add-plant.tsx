@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/select";
 
 import * as React from "react";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -114,9 +114,9 @@ export function PlantForm() {
   const [date, setDate] = React.useState<Date>();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    const submit = POST(data);
     console.log("Your form has been submitted", data);
     console.log(data.start);
-    const submit = POST(data);
   }
 
   return (
