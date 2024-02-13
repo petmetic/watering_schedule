@@ -137,7 +137,7 @@ export function PlantForm() {
             <FormItem>
               <FormLabel>Plant Name</FormLabel>
               <FormControl>
-                <Input placeholder="name of plant" {...field} />
+                <Input id="name" placeholder="name of plant" {...field} />
               </FormControl>
               <FormDescription>Insert name of plant.</FormDescription>
               <FormMessage />
@@ -153,7 +153,10 @@ export function PlantForm() {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="living room white tables" />
+                    <SelectValue
+                      id="location"
+                      placeholder="living room white tables"
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -176,7 +179,12 @@ export function PlantForm() {
             <FormItem>
               <FormLabel>Watering frequency</FormLabel>
               <FormControl>
-                <Input placeholder="3" type="number" {...field} />
+                <Input
+                  id="frequency"
+                  placeholder="3"
+                  type="number"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 Insert time in days for watering.
@@ -194,7 +202,7 @@ export function PlantForm() {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="100 ml" />
+                    <SelectValue id="volume" placeholder="100 ml" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -217,7 +225,11 @@ export function PlantForm() {
             <FormItem>
               <FormLabel>Instructions</FormLabel>
               <FormControl>
-                <Textarea placeholder="Water me with a mist." {...field} />
+                <Textarea
+                  id="instructions"
+                  placeholder="Water me with a mist."
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 Insert instructions for taking care of plant.
@@ -236,6 +248,7 @@ export function PlantForm() {
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
+                      id="start"
                       variant={"outline"}
                       className={cn(
                         "w-[240px] pl-3 text-left font-normal",
@@ -243,7 +256,7 @@ export function PlantForm() {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, "yyyy-mm-dd")
+                        format(field.value, "PPP")
                       ) : (
                         <span>Pick a date</span>
                       )}
@@ -275,6 +288,7 @@ export function PlantForm() {
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
+                      id="end"
                       variant={"outline"}
                       className={cn(
                         "w-[240px] pl-3 text-left font-normal",
