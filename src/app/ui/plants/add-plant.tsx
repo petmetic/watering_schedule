@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -51,7 +50,6 @@ const FormSchema = z.object({
     message: "Plant location must be at least 2 characters.",
   }),
   frequency: z.string(),
-  // .transform((val) => parseInt(val))
   volume: z.string().min(1, {
     message: "",
   }),
@@ -77,8 +75,6 @@ export function PlantForm() {
       frequency: "",
       volume: "",
       instructions: "",
-      // start: "",
-      // end: "",
     },
   });
   const waterVolume = [
