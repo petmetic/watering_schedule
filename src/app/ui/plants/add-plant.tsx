@@ -84,16 +84,16 @@ export function PlantForm() {
   const waterVolume = [
     {
       value: "200 ml",
-      name: "200 ml",
+      name: "200 ml jug",
     },
     {
       value: "300 ml",
-      name: "300 ml",
+      name: "300 ml jug",
     },
 
     {
       value: "100 ml",
-      name: "100 ml",
+      name: "100 ml jug",
     },
   ];
 
@@ -115,6 +115,8 @@ export function PlantForm() {
   const [date, setDate] = React.useState<Date>();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(`Data direct from form:`);
+    console.log(data);
     const submit = POST(data);
     console.log("Your form has been submitted", data);
     console.log(data.start);
@@ -241,7 +243,7 @@ export function PlantForm() {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, "PPP")
+                        format(field.value, "yyyy-mm-dd")
                       ) : (
                         <span>Pick a date</span>
                       )}
