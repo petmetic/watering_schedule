@@ -21,21 +21,35 @@ export async function GET(request: Request) {
     },
   );
   const data = await res.json();
-  // add zod schema
+  // TODO: add zod schema
   console.log(`these are from  GET `);
   console.log(data);
   return data.results;
 }
 
 export async function POST(form: HTMLFormElement) {
-  // TODO: extract naming the photofield into different function
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
-  let formData = new FormData();
-  formData.append("photo", file, file.name);
-  // TODO: for loop through the form and append the data from the form to formData
 
-  console.log(formData);
+  let formData = new FormData();
+
+  for (const [key, value] of Object.entries(form)) {
+    formData.append(key, value);
+    if (key == "photo") {
+      console.log(`photo key found`);
+      formData.set("photo", file, file.name);
+    } else if (key == "start") {
+      console.log(`found start date`);
+      let start = form.start.toISOString();
+      formData.set("start", start);
+    } else if (key == "end") {
+      console.log(`found end date`);
+      let end = form.start.toISOString();
+      formData.set("end", end);
+    }
+  }
+
+  // TODO: extract naming the photofield + appending formData -> onSubmit Handler
 
   const res = await fetch("http://127.0.0.1:8000/plants/", {
     method: "POST",
