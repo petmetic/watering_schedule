@@ -28,11 +28,12 @@ export async function GET(request: Request) {
 }
 
 export async function POST(form: HTMLFormElement) {
+  // TODO: extract naming the photofield into different function
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
-  const addPlant = document.getElementById("add-plant") as HTMLFormElement;
-  const formData = new FormData(addPlant);
+  let formData = new FormData();
   formData.append("photo", file, file.name);
+  // TODO: for loop through the form and append the data from the form to formData
 
   console.log(formData);
 
