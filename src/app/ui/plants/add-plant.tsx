@@ -115,11 +115,7 @@ export function PlantForm() {
   const [date, setDate] = React.useState<Date>();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(`Data direct from form:`);
-    console.log(data);
     const submit = POST(data);
-    console.log("Your form has been submitted", data);
-    console.log(data.start);
   }
 
   return (

@@ -36,14 +36,11 @@ export async function POST(form: HTMLFormElement) {
   for (const [key, value] of Object.entries(form)) {
     formData.append(key, value);
     if (key == "photo") {
-      console.log(`photo key found`);
       formData.set("photo", file, file.name);
     } else if (key == "start") {
-      console.log(`found start date`);
       let start = form.start.toISOString();
       formData.set("start", start);
     } else if (key == "end") {
-      console.log(`found end date`);
       let end = form.start.toISOString();
       formData.set("end", end);
     }
