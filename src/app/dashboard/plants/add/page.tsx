@@ -3,7 +3,7 @@ import Breadcrumbs from "@/app/ui/plants/breadcrumbs";
 import { PlantForm } from "@/app/ui/plants/add-plant";
 
 export const metadata: Metadata = {
-  title: "Create Plant",
+  title: "Add Plant",
 };
 
 export default function Page() {

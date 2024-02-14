@@ -14,7 +14,7 @@
 //         breadcrumbs={[
 //           { label: "Plants", href: "/dashboard/plants" },
 //           {
-//             label: "Create Plant",
+//             label: "Add Plant",
 //             href: "/dashboard/plants/add",
 //             active: true,
 //           },

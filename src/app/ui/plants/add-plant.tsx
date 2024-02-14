@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -37,30 +36,34 @@ import {
 } from "@/components/ui/popover";
 
 import { Metadata } from "next";
+import { POST } from "@/app/api/plants/route";
 
-// export const metadata: Metadata = {
-//   title: "Add plant",
-// };
+export const metadata: Metadata = {
+  title: "Add plant",
+};
+
 const FormSchema = z.object({
-  id: z.number(),
   name: z.string().min(2, {
     message: "Plant name must be at least 2 characters.",
   }),
   location: z.string().min(2, {
     message: "Plant location must be at least 2 characters.",
   }),
-  frequency: z.number().min(1, {
-    message: "Watering time should be an integer, specified in days.",
-  }),
+  frequency: z.string(),
   volume: z.string().min(1, {
     message: "",
   }),
   instructions: z.string().min(1, {
     message: "Please provide instructions for taking care of the plant.",
   }),
-  status: z.string(),
-  start: z.string(),
-  end: z.string(),
+  status: z.string().optional(),
+  start: z.date({
+    required_error: "A start date is required.",
+  }),
+  end: z.date({
+    required_error: "An end date is required.",
+  }),
+  photo: z.any(),
 });
 
 export function PlantForm() {
@@ -69,37 +72,56 @@ export function PlantForm() {
     defaultValues: {
       name: "",
       location: "",
+      frequency: "",
       volume: "",
       instructions: "",
-      start: "",
-      end: "",
     },
   });
   const waterVolume = [
     {
-      value: "200_ml",
-      name: "200 ml",
+      value: "200 ml",
+      name: "200 ml jug",
     },
     {
-      value: "300_ml",
-      name: "300 ml",
+      value: "300 ml",
+      name: "300 ml jug",
     },
 
     {
-      value: "100_ml",
-      name: "100 ml",
+      value: "100 ml",
+      name: "100 ml jug",
+    },
+  ];
+
+  const location = [
+    {
+      value: "living room black table & around",
+      name: "living room black table & around",
+    },
+    {
+      value: "living room hanging",
+      name: "living room hanging",
+    },
+    {
+      value: "special care",
+      name: "special care",
     },
   ];
 
   const [date, setDate] = React.useState<Date>();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("Your form has been submitted", data);
+    const submit = POST(data);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form
+        encType="multipart/form-data"
+        id="add-plant"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-2/3 space-y-6"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -107,7 +129,7 @@ export function PlantForm() {
             <FormItem>
               <FormLabel>Plant Name</FormLabel>
               <FormControl>
-                <Input placeholder="name of plant" {...field} />
+                <Input id="name" placeholder="name of plant" {...field} />
               </FormControl>
               <FormDescription>Insert name of plant.</FormDescription>
               <FormMessage />
@@ -120,10 +142,24 @@ export function PlantForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Location</FormLabel>
-              <FormControl>
-                <Input placeholder="bookshelves" {...field} />
-              </FormControl>
-              <FormDescription>Insert location of plant.</FormDescription>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue
+                      id="location"
+                      placeholder="living room white tables"
+                    />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {location.map((location, index) => (
+                    <SelectItem key={index} value={location.value}>
+                      {location.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormDescription>Select location of plant.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -135,7 +171,12 @@ export function PlantForm() {
             <FormItem>
               <FormLabel>Watering frequency</FormLabel>
               <FormControl>
-                <Input placeholder="3" {...field} />
+                <Input
+                  id="frequency"
+                  placeholder="3"
+                  type="number"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 Insert time in days for watering.
@@ -153,7 +194,7 @@ export function PlantForm() {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="100 ml" />
+                    <SelectValue id="volume" placeholder="100 ml" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -164,7 +205,7 @@ export function PlantForm() {
                   ))}
                 </SelectContent>
               </Select>
-              <FormDescription>Select amount of water.</FormDescription>
+              <FormDescription>Select volume of water.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -176,7 +217,11 @@ export function PlantForm() {
             <FormItem>
               <FormLabel>Instructions</FormLabel>
               <FormControl>
-                <Textarea placeholder="Water me with a mist." {...field} />
+                <Textarea
+                  id="instructions"
+                  placeholder="Water me with a mist."
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 Insert instructions for taking care of plant.
@@ -189,12 +234,13 @@ export function PlantForm() {
           control={form.control}
           name="start"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Start watering date</FormLabel>
+            <FormItem className="flex flex-col">
+              <FormLabel>Start of watering</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
+                      id="start"
                       variant={"outline"}
                       className={cn(
                         "w-[240px] pl-3 text-left font-normal",
@@ -215,16 +261,11 @@ export function PlantForm() {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
                     initialFocus
                   />
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                Insert date of beginning of watering.
-              </FormDescription>
+              <FormDescription>Pick start of watering date.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -233,12 +274,13 @@ export function PlantForm() {
           control={form.control}
           name="end"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>End watering date</FormLabel>
+            <FormItem className="flex flex-col">
+              <FormLabel>End of watering</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
+                      id="end"
                       variant={"outline"}
                       className={cn(
                         "w-[240px] pl-3 text-left font-normal",
@@ -259,30 +301,30 @@ export function PlantForm() {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
                     initialFocus
                   />
                 </PopoverContent>
               </Popover>
-              <FormDescription>Insert date of end of watering.</FormDescription>
+              <FormDescription>Pick end of watering date.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
+          control={form.control}
           name="photo"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Plant Image</FormLabel>
-              <Input id="image" type="file" />
+              <Input id="photo" type="file" />
               <FormDescription>Choose plant image.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" value="save">
+          Submit
+        </Button>
       </form>
     </Form>
   );
