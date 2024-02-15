@@ -37,6 +37,7 @@ import {
 
 import { Metadata } from "next";
 import { POST } from "@/app/api/plants/route";
+import { addPlant } from "@/app/lib/actions";
 
 export const metadata: Metadata = {
   title: "Add plant",
@@ -111,7 +112,10 @@ export function PlantForm() {
   const [date, setDate] = React.useState<Date>();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    const submit = POST(data);
+    const newData = addPlant(data);
+    const submit = POST(newData);
+    // TODO: clear form
+    // TODO: reply the form has been submitted
   }
 
   return (
