@@ -1,4 +1,4 @@
-export function addPlant(form: HTMLFormElement) {
+export function prepareAddPlantData(form: HTMLFormElement) {
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
 
@@ -16,5 +16,7 @@ export function addPlant(form: HTMLFormElement) {
       formData.set("end", end);
     }
   }
+  formData.toString();
+  console.log(formData);
   return formData;
 }

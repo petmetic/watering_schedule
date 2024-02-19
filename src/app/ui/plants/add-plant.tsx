@@ -37,7 +37,8 @@ import {
 
 import { Metadata } from "next";
 import { POST } from "@/app/api/plants/route";
-import { addPlant } from "@/app/lib/actions";
+import { prepareAddPlantData } from "@/app/lib/actions";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Add plant",
@@ -72,10 +73,11 @@ export function PlantForm() {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: "",
-      location: "",
-      frequency: "",
-      volume: "",
+      location: "Select plant location",
+      frequency: "0",
+      volume: "Select volume of water",
       instructions: "",
+      photo: "insert photo of plant here",
     },
   });
   const waterVolume = [
@@ -112,9 +114,8 @@ export function PlantForm() {
   const [date, setDate] = React.useState<Date>();
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    const newData = addPlant(data);
-    const submit = POST(newData);
-    // TODO: clear form
+    const newPlantData = prepareAddPlantData(data);
+    const submit = POST(newPlantData);
     // TODO: reply the form has been submitted
   }
 

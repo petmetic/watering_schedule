@@ -23,7 +23,7 @@ export async function GET(request: Request) {
   return data.results;
 }
 
-export async function POST(formData) {
+export async function POST(formData: FormData) {
   const res = await fetch("http://127.0.0.1:8000/plants/", {
     method: "POST",
     headers: {},
