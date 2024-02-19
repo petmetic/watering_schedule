@@ -17,6 +17,5 @@ export function prepareAddPlantData(form: HTMLFormElement) {
     }
   }
   formData.toString();
-  console.log(formData);
   return formData;
 }
