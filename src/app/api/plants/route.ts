@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic"; // defaults to auto
 export const revalidate = 1;
-export const fetchCache = "force-no-store";
+// export const fetchCache = "force-no-store";
 
 // import { unstable_noStore as noStore } from "next/cache";
 
@@ -30,5 +30,9 @@ export async function POST(formData: FormData) {
     body: formData,
   });
   const data = await res.json();
-  return Response.json({ data });
+  // console.log(`response`);
+  console.log(data);
+  const id = data.id;
+  console.log(id);
+  return id;
 }

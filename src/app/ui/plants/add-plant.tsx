@@ -39,6 +39,7 @@ import { Metadata } from "next";
 import { POST } from "@/app/api/plants/route";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Add plant",
@@ -69,6 +70,7 @@ const FormSchema = z.object({
 });
 
 export function PlantForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -82,40 +84,43 @@ export function PlantForm() {
   });
   const waterVolume = [
     {
-      value: "200 ml",
+      value: "200_ml",
       name: "200 ml jug",
     },
     {
-      value: "300 ml",
+      value: "300_ml",
       name: "300 ml jug",
     },
 
     {
-      value: "100 ml",
+      value: "100_ml",
       name: "100 ml jug",
     },
   ];
 
   const location = [
     {
-      value: "living room black table & around",
+      value: "living_room_black",
       name: "living room black table & around",
     },
     {
-      value: "living room hanging",
+      value: "living_room_hanging",
       name: "living room hanging",
     },
     {
-      value: "special care",
+      value: "special_care",
       name: "special care",
     },
   ];
 
   const [date, setDate] = React.useState<Date>();
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     const newPlantData = prepareAddPlantData(data);
-    const submit = POST(newPlantData);
+    const id = await POST(newPlantData);
+    // console.log(`id from form ${id}`);
+    router.push(`/dashboard/plants/${id}/`);
+    // redirect(`/plants/${id}/`);
     // TODO: reply the form has been submitted
   }
 
