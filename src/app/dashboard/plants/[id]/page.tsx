@@ -1,35 +1,38 @@
 "use client";
-import Breadcrumbs from "@/app/ui/plants/breadcrumbs";
-import { GET } from "@/app/api/plants/[id]/route";
+
 import { useParams, useRouter } from "next/navigation";
-import * as z from "zod";
-import { prepareAddPlantData } from "@/app/lib/actions";
-import { POST } from "@/app/api/plants/route";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import Image from "next/image";
 
 export default function Page() {
   const { id } = useParams<{ id: string }>();
-  console.log(`in Page function ${id}`);
-  async function getPlant(id: string) {
-    const viewPlantData = GET(id);
+
+  // console.log(`id in pages` + id);
+
+  async function getPlant() {
+    const getPlantData = await fetch(`/api/plants/${id}`);
+    // console.log(getPlantData);
   }
-  let plantData = getPlant(id);
-  console.log(plantData);
+
+  let plantData = null;
+  getPlant().then((data) => {
+    console.log(`data from page after getPlant()` + data);
+    plantData = data;
+  });
 
   return (
     <main>
-      <p></p>
       <h1>View added plant</h1>
-      {/*<Breadcrumbs*/}
-      {/*  breadcrumbs={[*/}
-      {/*    { label: "Plants", href: "/dashboard/plants" },*/}
-      {/*    {*/}
-      {/*      label: "View Plant",*/}
-      {/*      href: "/dashboard/plants/[id]",*/}
-      {/*      active: true,*/}
-      {/*    },*/}
-      {/*  ]}*/}
-      {/*/>*/}
-      {/*<PlantForm />*/}
+      {/*<p>plant id: {plantData.id}</p>*/}
     </main>
   );
 }

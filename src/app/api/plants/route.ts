@@ -30,9 +30,6 @@ export async function POST(formData: FormData) {
     body: formData,
   });
   const data = await res.json();
-  // console.log(`response`);
-  console.log(data);
-  const id = data.id;
-  console.log(id);
-  return id;
+
+  return data.id;
 }
