@@ -22,8 +22,6 @@ export async function GET(request: Request) {
     },
   );
   const data = await res.json();
-  console.log(`this is the data from GET request res.json()`);
-  console.log(data);
 
   // const parsedData = FormSchema.parse(data);
 

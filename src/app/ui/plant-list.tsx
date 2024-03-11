@@ -10,26 +10,21 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
+import useSWR from "swr";
 
-import { useRouter } from "next/navigation";
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function PlantList() {
-  const router = useRouter();
-  async function getPlantList() {
-    const plantData = await fetch(`/api/plants`, {
-      method: "GET",
-    }).then(async (res) => {
-      return await res.json();
-    });
-    console.log(plantData);
-  }
-  // if `plants` is in {}, plants.map((plant)=>...) is no longer red
-  let { plants } = getPlantList(); // do not know how to call a promise to return data
-  console.log(plants);
+  const { data, error, isLoading } = useSWR("/api/plants", fetcher);
 
-  if (plants == null) {
+  let plants = data?.data?.results;
+  console.log(data);
+
+  if (isLoading) {
+    return <p>[imagine spinner here]</p>;
+  } else if (error) {
     return <p>No plant data to show</p>;
-  } else
+  } else {
     return (
       <Table>
         <TableCaption>List of plants</TableCaption>
@@ -67,4 +62,5 @@ export default function PlantList() {
         </TableFooter>
       </Table>
     );
+  }
 }

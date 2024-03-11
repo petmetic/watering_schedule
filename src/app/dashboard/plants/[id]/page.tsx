@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
+import useSWR from "swr";
 import {
   Table,
   TableBody,
@@ -13,32 +14,23 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function Page() {
   const { id } = useParams<{ id: string }>();
+  const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
 
-  async function getPlant() {
-    const getPlantData = await fetch(`/api/plants/${id}`, {
-      method: "GET",
-    }).then(async (res) => {
-      return await res.json();
-    });
-    console.log(getPlantData);
-  }
+  let plant = data?.data;
 
-  let plantData = null;
-  getPlant().then((data) => {
-    console.log(`data from page after getPlant()` + data);
-    plantData = data;
-  });
-  console.log(plantData);
-
-  if (plantData == null) {
+  if (isLoading) {
+    return <p>[imagine spinner here]</p>;
+  } else if (error) {
     return <p>No plant data to show</p>;
-  } else
+  } else {
     return (
       <main>
         <h1>View added plant</h1>
-        <p>plant id: {plantData.id}</p>
+        <p>plant id: {plant.id}</p>
       </main>
     );
+  }
 }
