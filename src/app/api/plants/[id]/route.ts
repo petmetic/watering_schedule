@@ -1,4 +1,4 @@
-import { useParams } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
@@ -18,5 +18,6 @@ export async function GET(
     },
   );
   const data = await res.json();
-  return Response.json({ data });
+  console.log(data);
+  return NextResponse.json({ data });
 }

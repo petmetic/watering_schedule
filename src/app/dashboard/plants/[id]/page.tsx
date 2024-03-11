@@ -16,11 +16,13 @@ import Image from "next/image";
 export default function Page() {
   const { id } = useParams<{ id: string }>();
 
-  // console.log(`id in pages` + id);
-
   async function getPlant() {
-    const getPlantData = await fetch(`/api/plants/${id}`);
-    // console.log(getPlantData);
+    const getPlantData = await fetch(`/api/plants/${id}`, {
+      method: "GET",
+    }).then(async (res) => {
+      return await res.json();
+    });
+    console.log(getPlantData);
   }
 
   let plantData = null;

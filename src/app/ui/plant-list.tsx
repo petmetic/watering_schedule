@@ -14,6 +14,7 @@ import { GET } from "@/app/api/plants/route";
 
 export async function PlantList() {
   const plants = await GET();
+  // const plants = await fetch(`/api/plants`, { method: "GET" });
   console.log(`These are from the plant-list page`);
   console.log(plants);
 

@@ -118,9 +118,7 @@ export function PlantForm() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     const newPlantData = prepareAddPlantData(data);
     const id = await POST(newPlantData);
-    // console.log(`id from form ${id}`);
     router.push(`/dashboard/plants/${id}/`);
-    // redirect(`/plants/${id}/`);
     // TODO: reply the form has been submitted
   }
 
