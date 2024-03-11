@@ -38,36 +38,12 @@ import {
 import { Metadata } from "next";
 import { POST } from "@/app/api/plants/route";
 import { prepareAddPlantData } from "@/app/lib/actions";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { FormSchema } from "@/app/lib/schema";
 
 export const metadata: Metadata = {
   title: "Add plant",
 };
-
-const FormSchema = z.object({
-  name: z.string().min(2, {
-    message: "Plant name must be at least 2 characters.",
-  }),
-  location: z.string().min(2, {
-    message: "Plant location must be at least 2 characters.",
-  }),
-  frequency: z.string(),
-  volume: z.string().min(1, {
-    message: "",
-  }),
-  instructions: z.string().min(1, {
-    message: "Please provide instructions for taking care of the plant.",
-  }),
-  status: z.string().optional(),
-  start: z.date({
-    required_error: "A start date is required.",
-  }),
-  end: z.date({
-    required_error: "An end date is required.",
-  }),
-  photo: z.any(),
-});
 
 export function PlantForm() {
   const router = useRouter();

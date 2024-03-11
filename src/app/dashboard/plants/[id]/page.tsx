@@ -30,11 +30,15 @@ export default function Page() {
     console.log(`data from page after getPlant()` + data);
     plantData = data;
   });
+  console.log(plantData);
 
-  return (
-    <main>
-      <h1>View added plant</h1>
-      {/*<p>plant id: {plantData.id}</p>*/}
-    </main>
-  );
+  if (plantData == null) {
+    return <p>No plant data to show</p>;
+  } else
+    return (
+      <main>
+        <h1>View added plant</h1>
+        <p>plant id: {plantData.id}</p>
+      </main>
+    );
 }
