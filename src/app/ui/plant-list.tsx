@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 import useSWR from "swr";
 
@@ -21,7 +22,11 @@ export default function PlantList() {
   console.log(data);
 
   if (isLoading) {
-    return <p>[imagine spinner here]</p>;
+    return (
+      <div className="flex h-screen flex-col md:flex-row">
+        <Progress value={33} />
+      </div>
+    );
   } else if (error) {
     return <p>No plant data to show</p>;
   } else {

@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { FormSchema } from "@/app/lib/schema";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 export const revalidate = 1;
@@ -22,10 +21,6 @@ export async function GET(request: Request) {
     },
   );
   const data = await res.json();
-
-  // const parsedData = FormSchema.parse(data);
-
-  // TODO: add zod schema
 
   return NextResponse.json({ data });
 }
