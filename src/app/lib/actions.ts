@@ -12,29 +12,10 @@ export function prepareAddPlantData(form: any) {
       let start = form.start.toISOString();
       formData.set("start", start);
     } else if (key === "end") {
-      let end = form.start.toISOString();
+      let end = form.end.toISOString();
       formData.set("end", end);
     }
   }
   formData.toString();
   return formData;
 }
-
-// export function prepareDetailPlantData(data: {}) {
-//   let Plant;
-//
-//   for (const [key, value] of Object.entries(data)) {
-//     Plant.append(key, value);
-//
-//     let date = new Date();
-//     const formattedDate = date.toLocaleString("en-US", {
-//       weekday: "long",
-//       year: "numeric",
-//       month: "long",
-//       day: "numeric"
-//     });
-//     if ((key === ("start" | "end")) {
-//       value = formattedDate(date);
-//     }
-//   }
-// }

@@ -14,15 +14,21 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import { Progress } from "@/components/ui/progress";
+import * as dayjs from "dayjs";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function Page() {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
   const { id } = useParams<{ id: string }>();
   const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
 
   let plant = data?.data;
-  console.log(plant);
-  // prepareDetailPlantData(plant);
+
+  let plantStartWatering = plant?.start;
+  let plantStart = dayjs(plantStartWatering).format("DD MMM YYYY");
+
+  let plantEndWatering = plant?.end;
+  let plantEnd = dayjs(plantEndWatering).format("DD MMM YYYY");
 
   if (isLoading) {
     return (
@@ -65,8 +71,8 @@ export default function Page() {
             <TableCell>{plant.instructions}</TableCell>
             <TableCell>{plant.volume}</TableCell>
             <TableCell>{plant.status}</TableCell>
-            <TableCell>{plant.start}</TableCell>
-            <TableCell>{plant.end}</TableCell>
+            <TableCell>{plantStart}</TableCell>
+            <TableCell>{plantEnd}</TableCell>
             <TableCell>{plant.frequency}</TableCell>
           </TableRow>
         </TableBody>

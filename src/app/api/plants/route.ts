@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic"; // defaults to auto
-export const revalidate = 1;
+// export const revalidate = 1;
 // export const fetchCache = "force-no-store";
 
 // import { unstable_noStore as noStore } from "next/cache";
@@ -15,8 +15,8 @@ export async function GET(request: Request) {
       next: { revalidate: 1 },
       headers: {
         "Content-Type": "application/json",
-        pragma: "no-cache",
-        "cache-control": "no-cache",
+        // pragma: "no-cache",
+        // "cache-control": "no-cache",
       },
     },
   );
