@@ -21,6 +21,8 @@ export default function Page() {
   const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
 
   let plant = data?.data;
+  console.log(plant);
+  // prepareDetailPlantData(plant);
 
   if (isLoading) {
     return (
@@ -39,7 +41,12 @@ export default function Page() {
             <TableHead className="w-[100px]">Plant Name</TableHead>
             <TableHead>Image</TableHead>
             <TableHead>Location</TableHead>
+            <TableHead>Instructions</TableHead>
+            <TableHead>Water volume</TableHead>
             <TableHead>Status</TableHead>
+            <TableHead>Start of watering</TableHead>
+            <TableHead>End of watering</TableHead>
+            <TableHead>Watering frequency (in days)</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -55,7 +62,12 @@ export default function Page() {
               />
             </TableCell>
             <TableCell>{plant.location}</TableCell>
+            <TableCell>{plant.instructions}</TableCell>
+            <TableCell>{plant.volume}</TableCell>
             <TableCell>{plant.status}</TableCell>
+            <TableCell>{plant.start}</TableCell>
+            <TableCell>{plant.end}</TableCell>
+            <TableCell>{plant.frequency}</TableCell>
           </TableRow>
         </TableBody>
         <TableFooter>

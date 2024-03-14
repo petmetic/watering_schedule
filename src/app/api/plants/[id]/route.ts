@@ -18,6 +18,5 @@ export async function GET(
     },
   );
   const data = await res.json();
-  console.log(data);
   return NextResponse.json({ data });
 }
