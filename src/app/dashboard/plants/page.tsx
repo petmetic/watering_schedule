@@ -9,6 +9,8 @@ export default function Page() {
   return (
     <main>
       <h1>View plant list</h1>
+      <br />
+      <br />
       <PlantList />
     </main>
   );
