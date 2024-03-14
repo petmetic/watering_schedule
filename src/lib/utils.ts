@@ -6,13 +6,3 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-// export async function getData() {
-//     const plantData = fs.readFile('plants-placeholder.js');
-//     let plantDataExtraction = JSON.parse(plantData);
-//     console.log(plantDataExtraction);
-//     let plantSpecific = plantDataExtraction.plantId;
-//     console.log(plantSpecific)
-//
-//     return plantDataExtraction
-// }

@@ -1,4 +1,4 @@
-export function prepareAddPlantData(form: HTMLFormElement) {
+export function prepareAddPlantData(form: any) {
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
 
@@ -6,13 +6,13 @@ export function prepareAddPlantData(form: HTMLFormElement) {
 
   for (const [key, value] of Object.entries(form)) {
     formData.append(key, value);
-    if (key == "photo") {
+    if (key === "photo") {
       formData.set("photo", file, file.name);
-    } else if (key == "start") {
+    } else if (key === "start") {
       let start = form.start.toISOString();
       formData.set("start", start);
-    } else if (key == "end") {
-      let end = form.start.toISOString();
+    } else if (key === "end") {
+      let end = form.end.toISOString();
       formData.set("end", end);
     }
   }
