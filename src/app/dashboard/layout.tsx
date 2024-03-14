@@ -1,5 +1,4 @@
 import SideNav from "@/app/ui/dashboard/sidenav";
-import { PlantList } from "@/app/ui/plant-list";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

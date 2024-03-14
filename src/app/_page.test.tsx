@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Page from "./page";
 
-test("App router works with server components", () => {
+test("If form for adding plant loads", () => {
   render(<Page />);
   expect(
     screen.getByRole("heading", {
