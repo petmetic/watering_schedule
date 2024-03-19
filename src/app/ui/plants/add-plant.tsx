@@ -39,7 +39,7 @@ import { Metadata } from "next";
 import { POST } from "@/app/api/plants/route";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
-import { FormSchema } from "@/app/lib/schema";
+import { FormSchemaSubmit } from "@/app/lib/schema";
 
 export const metadata: Metadata = {
   title: "Add plant",
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
 
 export function PlantForm() {
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof FormSchemaSubmit>>({
+    resolver: zodResolver(FormSchemaSubmit),
     defaultValues: {
       name: "",
       location: "Select plant location",

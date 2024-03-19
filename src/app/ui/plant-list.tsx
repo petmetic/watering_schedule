@@ -13,6 +13,9 @@ import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 
 import useSWR from "swr";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { SwitchWatered } from "@/app/ui/plants/watered-button";
 
 export default function PlantList() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -20,7 +23,6 @@ export default function PlantList() {
   const { data, error, isLoading } = useSWR("/api/plants", fetcher);
 
   let plants = data?.data?.results;
-  console.log(data);
 
   if (isLoading) {
     return (
@@ -43,22 +45,25 @@ export default function PlantList() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {plants.map((plant: any) => (
-            <TableRow key={plant.id}>
-              <TableCell className="font-medium">{plant.name}</TableCell>
-              <TableCell>
-                <Image
-                  src={plant.photo}
-                  width={150}
-                  height={150}
-                  className="hidden md:block"
-                  alt={`${plant.photo}'s picture`}
-                />
-              </TableCell>
-              <TableCell>{plant.location}</TableCell>
-              <TableCell>{plant.status}</TableCell>
-            </TableRow>
-          ))}
+          {plants &&
+            plants.map((plant: any) => (
+              <TableRow key={plant.id}>
+                <TableCell className="font-medium">{plant.name}</TableCell>
+                <TableCell>
+                  <Image
+                    src={plant.photo}
+                    width={150}
+                    height={150}
+                    className="hidden md:block"
+                    alt={`${plant.photo}'s picture`}
+                  />
+                </TableCell>
+                <TableCell>{plant.location}</TableCell>
+                <TableCell>
+                  {plant.status} <SwitchWatered />
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
         <TableFooter>
           <TableRow>
