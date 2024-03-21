@@ -17,7 +17,6 @@ export async function GET(request: Request) {
   );
   const data = await res.json();
   let parsed = FormSchemaGet.safeParse(data.results);
-  console.log(parsed);
   if (parsed.success) {
     console.log("success");
     return NextResponse.json({ data });
@@ -27,7 +26,8 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(formData: FormData) {
+export async function POST(request: Request) {
+  const formData = await request.formData();
   const res = await fetch("http://127.0.0.1:8000/plants/", {
     method: "POST",
     headers: {
@@ -36,5 +36,5 @@ export async function POST(formData: FormData) {
     body: formData,
   });
   const data = await res.json();
-  return data.id;
+  return NextResponse.json({ data });
 }

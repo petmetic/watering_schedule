@@ -13,8 +13,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import { Progress } from "@/components/ui/progress";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
+import { ProgressBar } from "@/app/ui/progress-bar";
 
 export function ViewPlant() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -33,7 +33,7 @@ export function ViewPlant() {
   if (isLoading) {
     return (
       <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-        <Progress value={33} />
+        <ProgressBar />
       </div>
     );
   } else if (error) {

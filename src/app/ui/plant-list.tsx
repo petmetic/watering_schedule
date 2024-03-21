@@ -13,9 +13,9 @@ import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 
 import useSWR from "swr";
-import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { SwitchWatered } from "@/app/ui/plants/watered-button";
+import { ProgressBar } from "@/app/ui/progress-bar";
 
 export default function PlantList() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -27,7 +27,7 @@ export default function PlantList() {
   if (isLoading) {
     return (
       <div className="flex h-screen flex-col md:flex-row">
-        <Progress value={33} />
+        <ProgressBar />
       </div>
     );
   } else if (error) {
@@ -60,7 +60,7 @@ export default function PlantList() {
                 </TableCell>
                 <TableCell>{plant.location}</TableCell>
                 <TableCell>
-                  {plant.status} <SwitchWatered />
+                  <SwitchWatered />
                 </TableCell>
               </TableRow>
             ))}

@@ -40,6 +40,7 @@ import { POST } from "@/app/api/plants/route";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
 import { FormSchemaSubmit } from "@/app/lib/schema";
+import useSWR from "swr";
 
 export const metadata: Metadata = {
   title: "Add plant",
@@ -89,14 +90,24 @@ export function PlantForm() {
     },
   ];
 
-  const [date, setDate] = React.useState<Date>();
+  // const [date, setDate] = React.useState<Date>();
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchemaSubmit>) {
     const newPlantData = prepareAddPlantData(data);
-    const id = await POST(newPlantData);
-    router.push(`/dashboard/plants/${id}/`);
+    const plant = await fetch(`/api/plants/`, {
+      method: "POST",
+      body: newPlantData,
+    }).then(async (res) => {
+      return await res.json();
+    });
+
+    if (plant?.data?.id) {
+      router.push(`/dashboard/plants/${plant.data.id}/`);
+    }
+
     // TODO: reply the form has been submitted
   }
+
   return (
     <Form {...form}>
       <form
