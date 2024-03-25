@@ -16,9 +16,10 @@ export async function GET(request: Request) {
     },
   );
   const data = await res.json();
+  console.log("after await response", data);
   let parsed = FormSchemaGet.safeParse(data.results);
   if (parsed.success) {
-    console.log("success");
+    console.log("after ZOD validation", data);
     return NextResponse.json({ data });
   } else {
     console.log(parsed.error);

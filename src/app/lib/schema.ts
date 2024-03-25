@@ -27,6 +27,7 @@ export const FormSchemaSubmit = z.object({
 
 export const FormSchemaGet = z.array(
   z.object({
+    // id: z.number(),
     name: z.string().min(2, {
       message: "Plant name must be at least 2 characters.",
     }),
@@ -40,6 +41,7 @@ export const FormSchemaGet = z.array(
     instructions: z.string().min(1, {
       message: "Please provide instructions for taking care of the plant.",
     }),
+    photo: z.any(),
     status: z.string().optional(),
     start: z.string({
       required_error: "A start date is required.",
@@ -47,7 +49,6 @@ export const FormSchemaGet = z.array(
     end: z.string({
       required_error: "An end date is required.",
     }),
-    photo: z.any(),
   }),
 );
 

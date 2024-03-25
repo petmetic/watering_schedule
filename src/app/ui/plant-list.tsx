@@ -45,25 +45,24 @@ export default function PlantList() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {plants &&
-            plants.map((plant: any) => (
-              <TableRow key={plant.id}>
-                <TableCell className="font-medium">{plant.name}</TableCell>
-                <TableCell>
-                  <Image
-                    src={plant.photo}
-                    width={150}
-                    height={150}
-                    className="hidden md:block"
-                    alt={`${plant.photo}'s picture`}
-                  />
-                </TableCell>
-                <TableCell>{plant.location}</TableCell>
-                <TableCell>
-                  <SwitchWatered />
-                </TableCell>
-              </TableRow>
-            ))}
+          {plants.map((plant: any) => (
+            <TableRow key={plant.id}>
+              <TableCell className="font-medium">{plant.name}</TableCell>
+              <TableCell>
+                <Image
+                  src={plant.photo}
+                  width={150}
+                  height={150}
+                  className="hidden md:block"
+                  alt={`${plant.photo}'s picture`}
+                />
+              </TableCell>
+              <TableCell>{plant.location}</TableCell>
+              <TableCell>
+                <SwitchWatered />
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
         <TableFooter>
           <TableRow>

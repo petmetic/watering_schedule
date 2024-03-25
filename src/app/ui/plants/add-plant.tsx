@@ -90,7 +90,7 @@ export function PlantForm() {
     },
   ];
 
-  // const [date, setDate] = React.useState<Date>();
+  const [date, setDate] = React.useState<Date>();
 
   async function onSubmit(data: z.infer<typeof FormSchemaSubmit>) {
     const newPlantData = prepareAddPlantData(data);
