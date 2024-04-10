@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { FormSchemaGet } from "@/app/lib/schema";
+import { formSchemaGet } from "@/app/lib/schema";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
@@ -16,10 +16,8 @@ export async function GET(request: Request) {
     },
   );
   const data = await res.json();
-  console.log("after await response", data);
-  let parsed = FormSchemaGet.safeParse(data.results);
+  let parsed = formSchemaGet.safeParse(data.results);
   if (parsed.success) {
-    console.log("after ZOD validation", data);
     return NextResponse.json({ data });
   } else {
     console.log(parsed.error);

@@ -21,7 +21,6 @@ export async function GET(
   const data = await res.json();
   let parsed = FormSchemaGetSingle.safeParse(data);
   if (parsed.success) {
-    console.log("success");
     return NextResponse.json({ data });
   } else {
     console.log(parsed.error);
