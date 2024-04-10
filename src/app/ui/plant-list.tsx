@@ -59,7 +59,7 @@ export default function PlantList() {
               </TableCell>
               <TableCell>{plant.location}</TableCell>
               <TableCell>
-                <SwitchWatered />
+                <Switch />
               </TableCell>
             </TableRow>
           ))}

@@ -15,6 +15,8 @@ import {
 import Image from "next/image";
 import dayjs from "dayjs";
 import { ProgressBar } from "@/app/ui/progress-bar";
+import { SwitchWatered } from "@/app/ui/plants/watered-button";
+import { Switch } from "@/components/ui/switch";
 
 export function ViewPlant() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -53,6 +55,7 @@ export function ViewPlant() {
             <TableHead>Start of watering</TableHead>
             <TableHead>End of watering</TableHead>
             <TableHead>Watering frequency (in days)</TableHead>
+            <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -74,14 +77,11 @@ export function ViewPlant() {
             <TableCell>{plantStart}</TableCell>
             <TableCell>{plantEnd}</TableCell>
             <TableCell>{plant.frequency}</TableCell>
+            <TableCell>
+              <Switch />
+            </TableCell>
           </TableRow>
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={4}>To be watered:</TableCell>
-            <TableCell className="text-right">1</TableCell>
-          </TableRow>
-        </TableFooter>
       </Table>
     );
   }
