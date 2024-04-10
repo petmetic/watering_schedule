@@ -13,6 +13,7 @@ import Image from "next/image";
 import useSWR from "swr";
 import { Switch } from "@/components/ui/switch";
 import { ProgressBar } from "@/app/features/progress-bar";
+import { ViewPlant } from "@/app/features/plants/view-plant";
 
 export default function PlantList() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
