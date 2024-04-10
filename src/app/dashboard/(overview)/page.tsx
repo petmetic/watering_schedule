@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import DashboardSkeleton from "@/app/ui/skeletons";
+import DashboardSkeleton from "@/app/features/skeletons";
 import { Metadata } from "next";
-import PlantList from "@/app/ui/plant-list";
+import PlantList from "@/app/features/plant-list";
 
 export const metadata: Metadata = {
   title: "Dashboard",

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Logo } from "@/components/ui/icons";
-import { lusitana } from "@/app/ui/fonts";
+import { lusitana } from "@/app/features/fonts";
 
 export default function WsLogo() {
   return (

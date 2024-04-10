@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { inter } from "@/app/ui/fonts";
+import { inter } from "@/app/features/fonts";
 import "../styles/globals.css";
 import { ReactNode } from "react";
 

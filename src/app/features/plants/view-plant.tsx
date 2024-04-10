@@ -14,8 +14,7 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import dayjs from "dayjs";
-import { ProgressBar } from "@/app/ui/progress-bar";
-import { SwitchWatered } from "@/app/ui/plants/watered-button";
+import { ProgressBar } from "@/app/features/progress-bar";
 import { Switch } from "@/components/ui/switch";
 
 export function ViewPlant() {

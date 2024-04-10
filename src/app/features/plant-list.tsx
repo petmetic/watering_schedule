@@ -9,13 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
-
 import useSWR from "swr";
 import { Switch } from "@/components/ui/switch";
-import { SwitchWatered } from "@/app/ui/plants/watered-button";
-import { ProgressBar } from "@/app/ui/progress-bar";
+import { ProgressBar } from "@/app/features/progress-bar";
 
 export default function PlantList() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
