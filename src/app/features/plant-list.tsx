@@ -1,20 +1,8 @@
 "use client";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import Image from "next/image";
 import useSWR from "swr";
-import { Switch } from "@/components/ui/switch";
 import { ProgressBar } from "@/app/features/progress-bar";
-import { ViewPlant } from "@/app/features/plants/view-plant";
 import { PlantSmall } from "@/app/features/plants/plant-small";
+import { useState } from "react";
 
 export default function PlantList() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -23,6 +11,19 @@ export default function PlantList() {
 
   let plants = data?.data?.results;
   console.log(plants);
+
+  const [watered, setWatered] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const handleChange = () => {
+    console.log("status has been changed");
+    // todo: make a fetch request to PATCH
+    setWatered(!watered);
+  };
+
+  const handleExpand = () => {
+    console.log("component has been expanded");
+    setExpanded(!expanded);
+  };
 
   if (isLoading) {
     return (
@@ -37,7 +38,14 @@ export default function PlantList() {
       <div>
         <div className="grid auto-rows-max items-start gap-6">
           {plants.map((plant: any) => (
-            <PlantSmall key={plant.id} plant={plant} />
+            <PlantSmall
+              key={plant.id}
+              plant={plant}
+              onWaterChange={handleChange}
+              onExpand={handleExpand}
+              expanded={expanded}
+              watered={watered}
+            />
           ))}
         </div>
       </div>

@@ -3,9 +3,26 @@
 import { useParams, useRouter } from "next/navigation";
 import useSWR from "swr";
 import { ProgressBar } from "@/app/features/progress-bar";
-import { Plant } from "@/app/features/plants/plant";
 
-export function ViewPlant() {
+import { PlantSmall } from "@/app/features/plants/plant-small";
+import { PlantExtended } from "@/app/features/plants/plantExtended";
+import { PlantSchema } from "@/app/lib/schema";
+
+interface PlantProps {
+  plant: PlantSchema;
+  onWaterChange: any;
+  onExpand: any;
+  expanded: boolean;
+  watered: boolean;
+}
+
+export function ViewPlant({
+  plant,
+  onWaterChange,
+  onExpand,
+  expanded,
+  watered,
+}: PlantProps) {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { id } = useParams<{ id: string }>();
@@ -20,6 +37,11 @@ export function ViewPlant() {
   } else if (error) {
     return <p>No plant data to show</p>;
   } else {
-    return <Plant data={data} />;
+    return (
+      <div>
+        <PlantSmall plant={data} expanded={expanded} watered={watered} />
+        <PlantExtended plant={data} />
+      </div>
+    );
   }
 }

@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const FormSchemaSubmit = z.object({
+export const formSchemaSubmit = z.object({
   name: z.string().min(2, {
     message: "Plant name must be at least 2 characters.",
   }),
