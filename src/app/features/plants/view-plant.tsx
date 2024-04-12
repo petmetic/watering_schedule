@@ -5,7 +5,6 @@ import useSWR from "swr";
 import { ProgressBar } from "@/app/features/progress-bar";
 
 import { PlantSmall } from "@/app/features/plants/plant-small";
-import { PlantExtended } from "@/app/features/plants/plantExtended";
 import { PlantSchema } from "@/app/lib/schema";
 
 interface PlantProps {
