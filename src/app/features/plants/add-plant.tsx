@@ -39,7 +39,7 @@ import { Metadata } from "next";
 import { POST } from "@/app/api/plants/route";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
-import { FormSchemaSubmit } from "@/app/lib/schema";
+import { formSchemaSubmit } from "@/app/lib/schema";
 import useSWR from "swr";
 
 export const metadata: Metadata = {
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
 
 export function PlantForm() {
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchemaSubmit>>({
-    resolver: zodResolver(FormSchemaSubmit),
+  const form = useForm<z.infer<typeof formSchemaSubmit>>({
+    resolver: zodResolver(formSchemaSubmit),
     defaultValues: {
       name: "",
       location: "Select plant location",
@@ -92,7 +92,7 @@ export function PlantForm() {
 
   const [date, setDate] = React.useState<Date>();
 
-  async function onSubmit(data: z.infer<typeof FormSchemaSubmit>) {
+  async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
     const newPlantData = prepareAddPlantData(data);
     const plant = await fetch(`/api/plants/`, {
       method: "POST",

@@ -17,8 +17,8 @@ import { ArrowDown } from "@/components/ui/icons";
 
 interface PlantProps {
   plant: PlantSchema;
-  onWaterChange: any;
-  onExpand: any;
+  onWaterChange?: any;
+  onExpand?: any;
   expanded: boolean;
   watered: boolean;
 }

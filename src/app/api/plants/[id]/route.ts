@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { FormSchemaGet, FormSchemaGetSingle } from "@/app/lib/schema";
+import { plantSchema } from "@/app/lib/schema";
 
 export async function GET(
   req: Request,
@@ -19,7 +19,7 @@ export async function GET(
     },
   );
   const data = await res.json();
-  let parsed = FormSchemaGetSingle.safeParse(data);
+  let parsed = plantSchema.safeParse(data);
   if (parsed.success) {
     return NextResponse.json({ data });
   } else {

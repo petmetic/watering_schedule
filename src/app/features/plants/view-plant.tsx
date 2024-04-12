@@ -16,13 +16,7 @@ interface PlantProps {
   watered: boolean;
 }
 
-export function ViewPlant({
-  plant,
-  onWaterChange,
-  onExpand,
-  expanded,
-  watered,
-}: PlantProps) {
+export function ViewPlant({ watered }: PlantProps) {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { id } = useParams<{ id: string }>();
@@ -39,8 +33,7 @@ export function ViewPlant({
   } else {
     return (
       <div>
-        <PlantSmall plant={data} expanded={expanded} watered={watered} />
-        <PlantExtended plant={data} />
+        <PlantSmall plant={data.data} expanded={true} watered={watered} />
       </div>
     );
   }
