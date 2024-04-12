@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { plantSchema } from "@/app/lib/schema";
 
 export async function GET(
   req: Request,
@@ -18,5 +19,24 @@ export async function GET(
     },
   );
   const data = await res.json();
-  return NextResponse.json({ data });
+  let parsed = plantSchema.safeParse(data);
+  if (parsed.success) {
+    return NextResponse.json({ data });
+  } else {
+    console.log(parsed.error);
+    return NextResponse.json({ error: parsed.error });
+  }
 }
+
+// export async function PATCH(request: Request) {
+//   const formData = await request.formData();
+//   const res = await fetch(`http://127.0.0.1:8000/plants/${id}`, {
+//     method: "PATCH",
+//     headers: {
+//       // Bearer: "mytoken",
+//     },
+//     body: formData,
+//   });
+//   const data = await res.json();
+//   return NextResponse.json({ data });
+// }

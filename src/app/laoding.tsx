@@ -1,4 +1,4 @@
-import PlantListSkeleton from "@/app/ui/plant-list-skeleton";
+import PlantListSkeleton from "@/app/features/plant-list-skeleton";
 
 export default function Loading() {
   return <PlantListSkeleton />;

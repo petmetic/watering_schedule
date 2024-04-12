@@ -13,7 +13,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import WsLogo from "@/app/ui/watering-s-logo";
+import WsLogo from "@/app/features/watering-s-logo";
 import { AddIcon, EditIcon } from "@/components/ui/icons";
 
 const components: { title: string; href: string; description: string }[] = [

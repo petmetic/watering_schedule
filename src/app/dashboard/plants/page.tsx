@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import PlantList from "@/app/ui/plant-list";
+import PlantList from "@/app/features/plant-list";
 
 export const metadata: Metadata = {
   title: "Plants",
