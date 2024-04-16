@@ -2,6 +2,7 @@
 ### Will post the docs in README.md when the project is near completion.
 <br>
 <br>
+This is the front end of the Watering schedule. Fot the backen, please visit [watering_schedule-backend](https://github.com/petmetic/watering_schedule_backend).
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
