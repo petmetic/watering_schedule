@@ -3,6 +3,9 @@ import { PlusCircle } from "lucide-react";
 import { CircleSlash } from "lucide-react";
 import { Frown } from "lucide-react";
 import { ChevronDown } from "lucide-react";
+import { ChevronUp } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { ChevronsDown } from "lucide-react";
 
 const Logo = () => {
   return <Leaf className="h-20 w-20" />;
@@ -21,7 +24,27 @@ const FrownIcon = () => {
 };
 
 const ArrowDown = () => {
-  return <ChevronDown />;
+  return <ChevronDown className="text-primary" />;
+};
+const ArrowRight = () => {
+  return <ChevronRight className="text-primary" />;
 };
 
-export { AddIcon, Logo, EditIcon, FrownIcon, ArrowDown };
+const ArrowUp = () => {
+  return <ChevronUp className="text-primary" />;
+};
+
+const ArrowUpDown = () => {
+  return <ChevronsDown className="text-primary" />;
+};
+
+export {
+  AddIcon,
+  Logo,
+  EditIcon,
+  FrownIcon,
+  ArrowRight,
+  ArrowUp,
+  ArrowDown,
+  ArrowUpDown,
+};

@@ -1,6 +1,13 @@
 import dayjs from "dayjs";
 import { PlantSchema } from "@/app/lib/schema";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+import { Button } from "@/components/ui/button";
+import { ArrowUpDown } from "@/components/ui/icons";
 
 interface PlantProps {
   plant: PlantSchema;
@@ -8,29 +15,51 @@ interface PlantProps {
 
 export function PlantExtended({ plant }: PlantProps) {
   return (
-    <Card className="border-0">
-      <CardContent>
-        <div className="border">
-          <p className="font-semibold">Instructions</p>
-          <p>{plant.instructions}</p>
+    <Collapsible>
+      <CollapsibleTrigger>
+        <div>
+          <ArrowUpDown /> <p className="text-sm">Details</p>
         </div>
-        <div className="border">
-          <p className="font-semibold">Volume of water</p>
-          <p>{plant.volume}</p>
-        </div>
-        <div className="border">
-          <p className="font-semibold">Start of watering date</p>
-          <p>{dayjs(plant?.start).format("DD MMM YYYY")}</p>
-        </div>
-        <div className="border">
-          <p className="font-semibold">End of watering date</p>
-          <p>{dayjs(plant?.end).format("DD MMM YYYY")}</p>
-        </div>
-        <div className="border">
-          <p className="font-semibold">Watering frequency</p>
-          <p>{plant.frequency}</p>
-        </div>
-      </CardContent>
-    </Card>
+      </CollapsibleTrigger>
+      <div>
+        <CollapsibleContent className="font-light text-primary">
+          Instructions
+        </CollapsibleContent>
+        <CollapsibleContent>{plant.instructions}</CollapsibleContent>
+      </div>
+      <div>
+        <CollapsibleContent className="font-light text-primary">
+          Volume of water
+        </CollapsibleContent>
+        <CollapsibleContent>{plant.volume}</CollapsibleContent>
+      </div>
+      <div>
+        <CollapsibleContent className="font-light text-primary">
+          Start of watering date
+        </CollapsibleContent>
+        <CollapsibleContent>
+          {dayjs(plant?.start).format("DD MMM YYYY")}
+        </CollapsibleContent>
+      </div>
+      <div>
+        <CollapsibleContent className="font-light text-primary">
+          End of watering date
+        </CollapsibleContent>
+        <CollapsibleContent>
+          {dayjs(plant?.end).format("DD MMM YYYY")}
+        </CollapsibleContent>
+      </div>
+      <div>
+        <CollapsibleContent className="font-light text-primary">
+          Watering frequency
+        </CollapsibleContent>
+        <CollapsibleContent>{plant.frequency}</CollapsibleContent>
+      </div>
+      <CollapsibleContent>
+        <Button variant="outline" className="text-primary border-primary">
+          Edit
+        </Button>
+      </CollapsibleContent>
+    </Collapsible>
   );
 }

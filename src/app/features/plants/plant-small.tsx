@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { PlantSchema } from "@/app/lib/schema";
 import { PlantExtended } from "@/app/features/plants/plantExtended";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "@/components/ui/icons";
+import { ArrowRight } from "@/components/ui/icons";
 
 interface PlantProps {
   plant: PlantSchema;
@@ -33,7 +33,7 @@ export function PlantSmall({
   return (
     <Card className={cn("w-[500px]")}>
       <CardHeader>
-        <CardTitle>{plant.name}</CardTitle>
+        <CardTitle className="text-primary">{plant.name}</CardTitle>
         <CardDescription>location: {plant.location}</CardDescription>
       </CardHeader>
 
@@ -46,25 +46,28 @@ export function PlantSmall({
           alt={`${plant.photo}'s picture`}
         />
       </CardContent>
-      <CardFooter className="flex items-center space-x-2">
-        <Switch id="plant-watered" onCheckedChange={onWaterChange} />
-        <Label htmlFor="plant-watered">
-          <p>{watered ? "Plant is watered." : "Plant needs watering."}</p>
-        </Label>
-        <div>
-          <Button onClick={onExpand}>
-            <ArrowDown /> Vew details
-          </Button>
+      <CardContent className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
+            <Label htmlFor="plant-watered">
+              <div>
+                {watered ? (
+                  <p className="text-primary font-bold">
+                    Plant needs watering.
+                  </p>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Plant is watered.
+                  </p>
+                )}
+              </div>
+            </Label>
+            <Switch id="plant-watered" onCheckedChange={onWaterChange} />
+          </div>
         </div>
-        <div>
-          {expanded ? (
-            <div>
-              <PlantExtended plant={plant} />
-            </div>
-          ) : (
-            "to collapse"
-          )}
-        </div>
+      </CardContent>
+      <CardFooter>
+        <PlantExtended plant={plant} />
       </CardFooter>
     </Card>
   );
