@@ -30,12 +30,10 @@ export function PlantExtended({ plant }: PlantProps) {
           </div>
         </div>
         <div className="p-2">
-          <div className="">
-            <CollapsibleContent>
-              <p className="font-light text-primary">Volume of water</p>
-              <div className="rounded-md border">{plant.volume}</div>
-            </CollapsibleContent>
-          </div>
+          <CollapsibleContent>
+            <p className="font-light text-primary">Volume of water</p>
+            <div className="rounded-md border">{plant.volume}</div>
+          </CollapsibleContent>
         </div>
         <div className="p-2">
           <div className="">
