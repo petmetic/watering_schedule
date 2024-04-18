@@ -10,7 +10,6 @@ export default function PlantList() {
   const { data, error, isLoading } = useSWR("/api/plants", fetcher);
 
   let plants = data?.data?.results;
-  console.log(plants);
 
   const [watered, setWatered] = useState(true);
   const [expanded, setExpanded] = useState(false);
@@ -43,8 +42,6 @@ export default function PlantList() {
               key={plant.id}
               plant={plant}
               onWaterChange={handleChange}
-              onExpand={handleExpand}
-              expanded={expanded}
               watered={watered}
             />
           ))}
