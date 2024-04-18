@@ -21,6 +21,7 @@ interface PlantProps {
   onExpand?: any;
   expanded: boolean;
   watered: boolean;
+  isOpen: boolean;
 }
 
 export function PlantSmall({
@@ -31,7 +32,7 @@ export function PlantSmall({
   watered,
 }: PlantProps) {
   return (
-    <Card className={cn("w-[500px]")}>
+    <Card className={cn("w-[700px]")}>
       <CardHeader>
         <CardTitle>{plant.name}</CardTitle>
         <CardDescription>location: {plant.location}</CardDescription>
@@ -46,25 +47,14 @@ export function PlantSmall({
           alt={`${plant.photo}'s picture`}
         />
       </CardContent>
-      <CardFooter className="flex items-center space-x-2">
+      <CardContent>
         <Switch id="plant-watered" onCheckedChange={onWaterChange} />
         <Label htmlFor="plant-watered">
           <p>{watered ? "Plant is watered." : "Plant needs watering."}</p>
         </Label>
-        <div>
-          <Button onClick={onExpand}>
-            <ArrowDown /> Vew details
-          </Button>
-        </div>
-        <div>
-          {expanded ? (
-            <div>
-              <PlantExtended plant={plant} />
-            </div>
-          ) : (
-            "to collapse"
-          )}
-        </div>
+      </CardContent>
+      <CardFooter className="flex items-center">
+        <PlantExtended plant={plant} />
       </CardFooter>
     </Card>
   );

@@ -33,7 +33,7 @@ export function ViewPlant({ watered }: PlantProps) {
   } else {
     return (
       <div>
-        <PlantSmall plant={data.data} expanded={true} watered={watered} />
+        <PlantSmall plant={data.data} watered={watered} />
       </div>
     );
   }

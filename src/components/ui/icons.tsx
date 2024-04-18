@@ -1,5 +1,6 @@
 import {
   ChevronDown,
+  ChevronsDown,
   CircleSlash,
   Frown,
   Leaf,
@@ -26,4 +27,8 @@ const ArrowDown = () => {
   return <ChevronDown />;
 };
 
-export { AddIcon, Logo, EditIcon, FrownIcon, ArrowDown };
+const ArrowsDown = () => {
+  return <ChevronsDown className="text-primary" />;
+};
+
+export { AddIcon, Logo, EditIcon, FrownIcon, ArrowDown, ArrowsDown };
