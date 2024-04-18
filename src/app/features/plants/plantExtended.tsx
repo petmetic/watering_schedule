@@ -22,12 +22,10 @@ export function PlantExtended({ plant }: PlantProps) {
       </CollapsibleTrigger>
       <div className="flex flex-col gap-2 p-3">
         <div className="p-2">
-          <div className="">
-            <CollapsibleContent>
-              <p className="font-light text-primary">Instructions</p>
-              <div className="rounded-md border">{plant.instructions}</div>
-            </CollapsibleContent>
-          </div>
+          <CollapsibleContent>
+            <p className="font-light text-primary">Instructions</p>
+            <div className="rounded-md border">{plant.instructions}</div>
+          </CollapsibleContent>
         </div>
         <div className="p-2">
           <CollapsibleContent>
@@ -36,32 +34,26 @@ export function PlantExtended({ plant }: PlantProps) {
           </CollapsibleContent>
         </div>
         <div className="p-2">
-          <div className="">
-            <CollapsibleContent>
-              <p className="font-light text-primary">Start of watering date</p>
-              <div className="rounded-md border">
-                {dayjs(plant?.start).format("DD MMM YYYY")}
-              </div>
-            </CollapsibleContent>
-          </div>
+          <CollapsibleContent>
+            <p className="font-light text-primary">Start of watering date</p>
+            <div className="rounded-md border">
+              {dayjs(plant?.start).format("DD MMM YYYY")}
+            </div>
+          </CollapsibleContent>
         </div>
         <div className="p-2">
-          <div className="">
-            <CollapsibleContent>
-              <p className="font-light text-primary">End of watering date</p>
-              <div className="rounded-md border">
-                {dayjs(plant?.end).format("DD MMM YYYY")}
-              </div>
-            </CollapsibleContent>
-          </div>
+          <CollapsibleContent>
+            <p className="font-light text-primary">End of watering date</p>
+            <div className="rounded-md border">
+              {dayjs(plant?.end).format("DD MMM YYYY")}
+            </div>
+          </CollapsibleContent>
         </div>
         <div className="p-2">
-          <div className="">
-            <CollapsibleContent>
-              <p className="font-light text-primary">Watering frequency</p>
-              <div className="rounded-md border">{plant.frequency}</div>
-            </CollapsibleContent>
-          </div>
+          <CollapsibleContent>
+            <p className="font-light text-primary">Watering frequency</p>
+            <div className="rounded-md border">{plant.frequency}</div>
+          </CollapsibleContent>
         </div>
 
         <CollapsibleContent>
