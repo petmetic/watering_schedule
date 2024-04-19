@@ -1,9 +1,8 @@
 import { expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
-import mockRouter from "next-router-mock";
 import Page from "./page";
 
-test("App router works on dashboard", () => {
+test("Add new plant", () => {
   render(<Page />);
   expect(
     screen.getByRole("heading", {
