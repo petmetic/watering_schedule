@@ -12,7 +12,7 @@ export default function PlantList() {
   let plants = data?.data?.results;
   console.log(plants);
 
-  const [watered, setWatered] = useState(false);
+  const [watered, setWatered] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const handleChange = () => {
     console.log("status has been changed");
