@@ -21,16 +21,9 @@ interface PlantProps {
   onExpand?: any;
   expanded: boolean;
   watered: boolean;
-  isOpen: boolean;
 }
 
-export function PlantSmall({
-  plant,
-  onWaterChange,
-  onExpand,
-  expanded,
-  watered,
-}: PlantProps) {
+export function PlantSmall({ plant, onWaterChange, watered }: PlantProps) {
   return (
     <Card className={cn("w-[700px]")}>
       <CardHeader>
