@@ -36,11 +36,9 @@ import {
 } from "@/components/ui/popover";
 
 import { Metadata } from "next";
-import { POST } from "@/app/api/plants/route";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
 import { formSchemaSubmit } from "@/app/lib/schema";
-import useSWR from "swr";
 
 export const metadata: Metadata = {
   title: "Add plant",
