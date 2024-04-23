@@ -119,7 +119,7 @@ export function PlantForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Plant Name</FormLabel>
+              <FormLabel data-testid="plant-name-label">Plant Name</FormLabel>
               <FormControl>
                 <Input id="name" placeholder="name of plant" {...field} />
               </FormControl>
