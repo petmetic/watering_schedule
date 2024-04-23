@@ -12,7 +12,7 @@ test("Add new plant", () => {
   ).toBeDefined();
 });
 
-test('On page Add plant "Plant Name" displays', () => {
+test("On page Add plant form displays", () => {
   render(<Page />);
   expect(screen.getByTestId("plant-name-label")).toBeDefined();
   expect(screen.getByTestId("plant-location")).toBeDefined();
