@@ -14,5 +14,5 @@ test("Add new plant", () => {
 
 test('On page Add plant "Plant Name" displays', () => {
   render(<Page />);
-  expect(screen.getByTestId("plant-label-name")).toBeDefined();
+  expect(screen.getByTestId("plant-name-label")).toBeDefined();
 });
