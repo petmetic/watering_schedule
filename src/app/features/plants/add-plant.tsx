@@ -119,9 +119,14 @@ export function PlantForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Plant Name</FormLabel>
+              <FormLabel data-testid="plant-name-label">Plant Name</FormLabel>
               <FormControl>
-                <Input id="name" placeholder="name of plant" {...field} />
+                <Input
+                  data-testid="plant-name"
+                  id="name"
+                  placeholder="name of plant"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>Insert name of plant.</FormDescription>
               <FormMessage />
@@ -133,7 +138,7 @@ export function PlantForm() {
           name="location"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Location</FormLabel>
+              <FormLabel data-testid="plant-location">Location</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -161,7 +166,9 @@ export function PlantForm() {
           name="frequency"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Watering frequency</FormLabel>
+              <FormLabel data-testid="plant-frequency">
+                Watering frequency
+              </FormLabel>
               <FormControl>
                 <Input
                   id="frequency"
