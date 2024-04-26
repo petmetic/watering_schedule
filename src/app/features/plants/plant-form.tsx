@@ -35,14 +35,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { Metadata } from "next";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
 import { formSchemaSubmit } from "@/app/lib/schema";
-
-export const metadata: Metadata = {
-  title: "Add plant",
-};
 
 export function PlantForm() {
   const router = useRouter();
@@ -110,7 +105,7 @@ export function PlantForm() {
     <Form {...form}>
       <form
         encType="multipart/form-data"
-        id="add-plant"
+        id="plant-form"
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-2/3 space-y-6"
       >

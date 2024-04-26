@@ -26,7 +26,7 @@ export const formSchemaSubmit = z.object({
 });
 
 export const plantSchema = z.object({
-  // id: z.number(),
+  id: z.number(),
   name: z.string().min(2, {
     message: "Plant name must be at least 2 characters.",
   }),
