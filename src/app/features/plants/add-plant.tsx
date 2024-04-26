@@ -121,7 +121,12 @@ export function PlantForm() {
             <FormItem>
               <FormLabel data-testid="plant-name-label">Plant Name</FormLabel>
               <FormControl>
-                <Input id="name" placeholder="name of plant" {...field} />
+                <Input
+                  data-testid="plant-name"
+                  id="name"
+                  placeholder="name of plant"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>Insert name of plant.</FormDescription>
               <FormMessage />

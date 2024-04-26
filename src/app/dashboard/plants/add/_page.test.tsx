@@ -14,7 +14,10 @@ test("Add new plant", () => {
 
 test("On page Add plant form displays", () => {
   render(<Page />);
-  expect(screen.getByTestId("plant-name-label")).toBeDefined();
-  expect(screen.getByTestId("plant-location")).toBeDefined();
-  expect(screen.getByTestId("plant-frequency")).toBeDefined();
+  expect(screen.getByTestId("plant-name")).toBeDefined();
+  expect(screen.getByText("Plant Name")).toBeDefined();
+  expect(screen.getByText("Location")).toBeDefined();
+  expect(screen.getByText("Watering frequency")).toBeDefined();
+  expect(screen.getByText("Volume of water")).toBeDefined();
+  expect(screen.getByText("Instructions")).toBeDefined();
 });
