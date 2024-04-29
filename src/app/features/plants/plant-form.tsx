@@ -41,9 +41,12 @@ import { formSchemaSubmit } from "@/app/lib/schema";
 
 export function PlantForm() {
   const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchemaSubmit>>({
     resolver: zodResolver(formSchemaSubmit),
     defaultValues: {
+      // to populate form, add data in default values
+      // name: data.data ? data.data.name : "",
       name: "",
       location: "Select plant location",
       frequency: "0",
@@ -82,8 +85,6 @@ export function PlantForm() {
       name: "special care",
     },
   ];
-
-  const [date, setDate] = React.useState<Date>();
 
   async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
     const newPlantData = prepareAddPlantData(data);

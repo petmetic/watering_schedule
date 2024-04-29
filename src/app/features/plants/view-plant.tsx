@@ -11,7 +11,6 @@ interface PlantProps {
   plant: PlantSchema;
   onWaterChange: any;
   onExpand: any;
-  expanded: boolean;
   watered: boolean;
 }
 

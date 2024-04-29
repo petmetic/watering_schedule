@@ -1,3 +1,6 @@
+import { useParams } from "next/navigation";
+import useSWR from "swr";
+
 export function prepareAddPlantData(form: any) {
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
@@ -18,4 +21,13 @@ export function prepareAddPlantData(form: any) {
   }
   formData.toString();
   return formData;
+}
+
+export function getDataFromSinglePlant(url: any) {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+  const { id } = useParams<{ id: string }>();
+  const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
+
+  return data, error, isLoading;
 }
