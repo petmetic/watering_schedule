@@ -37,22 +37,29 @@ import {
 
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
-import { formSchemaSubmit } from "@/app/lib/schema";
+import { formSchemaSubmit, PlantSchemaGetSingle } from "@/app/lib/schema";
+import Image from "next/image";
 
-export function PlantForm() {
+interface PlantProps {
+  plant: PlantSchemaGetSingle;
+}
+
+export function PlantForm({ plant }: PlantProps) {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchemaSubmit>>({
     resolver: zodResolver(formSchemaSubmit),
     defaultValues: {
       // to populate form, add data in default values
-      // name: data.data ? data.data.name : "",
-      name: "",
-      location: "Select plant location",
-      frequency: "0",
-      volume: "Select volume of water",
-      instructions: "",
-      photo: "insert photo of plant here",
+      name: plant.name ? plant.name : "",
+      location: plant.location ? plant.location : "Select plant location",
+      frequency: plant.frequency ? plant.frequency : "0",
+      status: plant.status ? plant.status : "needs watering",
+      start: plant.start ? plant.start : null,
+      end: plant.end ? plant.end : null,
+      volume: plant.volume ? plant.volume : "Select volume of water",
+      instructions: plant.instructions ? plant.instructions : "",
+      photo: plant.photo ? plant.photo : "insert photo of plant here",
     },
   });
   const waterVolume = [
@@ -305,18 +312,28 @@ export function PlantForm() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="photo"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Plant Image</FormLabel>
-              <Input id="photo" type="file" />
-              <FormDescription>Choose plant image.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div>
+          <Image
+            src={plant.photo}
+            width={70}
+            height={70}
+            className="hidden md:block rounded-full"
+            alt={`${plant.photo}'s picture`}
+          />
+
+          <FormField
+            control={form.control}
+            name="photo"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Plant Image</FormLabel>
+                <Input id="photo" type="file" />
+                <FormDescription>Choose plant image.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button type="submit" value="save">
           Submit
         </Button>

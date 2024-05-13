@@ -3,17 +3,13 @@ import { ProgressBar } from "@/app/features/progress-bar";
 import { PlantForm } from "@/app/features/plants/plant-form";
 import useSWR from "swr";
 import { useParams } from "next/navigation";
-import { PlantSchema } from "@/app/lib/schema";
+import { PlantSchemaGetSingle } from "@/app/lib/schema";
 
 interface PlantProps {
-  plant: PlantSchema;
-  onWaterChange: any;
-  onExpand: any;
-  expanded: boolean;
-  watered: boolean;
+  plant: PlantSchemaGetSingle;
 }
 
-export function EditPlant({ watered }: PlantProps) {
+export function EditPlant() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { id } = useParams<{ id: string }>();
@@ -30,7 +26,7 @@ export function EditPlant({ watered }: PlantProps) {
   } else {
     return (
       <div>
-        <PlantForm plant={data.data} watered={watered} />
+        <PlantForm plant={data.data} />
       </div>
     );
   }

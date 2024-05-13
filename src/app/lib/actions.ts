@@ -22,12 +22,3 @@ export function prepareAddPlantData(form: any) {
   formData.toString();
   return formData;
 }
-
-export function getDataFromSinglePlant(url: any) {
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-  const { id } = useParams<{ id: string }>();
-  const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
-
-  return data, error, isLoading;
-}

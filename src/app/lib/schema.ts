@@ -77,3 +77,5 @@ const FormSchemaGetSingle = z.object({
   }),
   photo: z.any(),
 });
+
+export type PlantSchemaGetSingle = z.infer<typeof FormSchemaGetSingle>;
