@@ -15,6 +15,8 @@ export function EditPlant() {
   const { id } = useParams<{ id: string }>();
   const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
 
+  let plant = data?.data;
+
   if (isLoading) {
     return (
       <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
@@ -26,7 +28,7 @@ export function EditPlant() {
   } else {
     return (
       <div>
-        <PlantForm plant={data.data} />
+        <PlantForm plant={plant} />
       </div>
     );
   }
