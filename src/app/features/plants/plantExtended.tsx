@@ -7,12 +7,18 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { ArrowsDown } from "@/components/ui/icons";
+import { useState } from "react";
 
 interface PlantProps {
   plant: PlantSchema;
 }
 
 export function PlantExtended({ plant }: PlantProps) {
+  const [clicked, setOnClick] = useState(false);
+  const handleClick = () => {
+    console.log("Edit button has been pressed");
+    setOnClick(!clicked);
+  };
   return (
     <Collapsible>
       <CollapsibleTrigger>
@@ -57,7 +63,11 @@ export function PlantExtended({ plant }: PlantProps) {
         </div>
 
         <CollapsibleContent>
-          <Button variant="outline" className="text-primary border-primary">
+          <Button
+            variant="outline"
+            className="text-primary border-primary"
+            onClick={handleClick}
+          >
             Edit
           </Button>
         </CollapsibleContent>
