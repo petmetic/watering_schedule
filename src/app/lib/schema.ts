@@ -103,3 +103,5 @@ export const FormSchemaSingle = z.object({
   }),
   photo: z.any(),
 });
+
+export type PlantSchemaSingle = z.infer<typeof FormSchemaSingle>;

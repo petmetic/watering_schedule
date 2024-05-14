@@ -45,7 +45,7 @@ import {
 import Image from "next/image";
 
 interface PlantProps {
-  plant: PlantSchemaGetSingle;
+  plant: PlantSchemaSingle;
 }
 
 export function PlantEditForm({ plant }: PlantProps) {
