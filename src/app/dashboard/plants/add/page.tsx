@@ -1,6 +1,11 @@
 import { Metadata } from "next";
 import Breadcrumbs from "@/app/features/plants/breadcrumbs";
 import { PlantForm } from "@/app/features/plants/plant-form";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { formSchemaSubmit, PlantSchemaGetSingle } from "@/app/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AddPlant } from "@/app/features/plants/add-plant";
 
 export const metadata: Metadata = {
   title: "Add Plant",
@@ -20,7 +25,7 @@ export default function Page() {
           },
         ]}
       />
-      <PlantForm />
+      <AddPlant />
     </main>
   );
 }

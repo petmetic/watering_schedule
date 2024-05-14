@@ -1,8 +1,3 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -35,33 +30,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { prepareAddPlantData } from "@/app/lib/actions";
-import { useRouter } from "next/navigation";
-import { formSchemaSubmit, PlantSchemaGetSingle } from "@/app/lib/schema";
-import Image from "next/image";
-
-interface PlantProps {
-  plant: PlantSchemaGetSingle;
-}
-
-export function PlantForm({ plant }: PlantProps) {
-  const router = useRouter();
-
-  const form = useForm<z.infer<typeof formSchemaSubmit>>({
-    resolver: zodResolver(formSchemaSubmit),
-    defaultValues: {
-      // to populate form, add data in default values
-      name: plant.name ? plant.name : "",
-      location: plant.location ? plant.location : "Select plant location",
-      frequency: plant.frequency ? plant.frequency : "0",
-      status: plant.status ? plant.status : "needs watering",
-      start: plant.start ? plant.start : null,
-      end: plant.end ? plant.end : null,
-      volume: plant.volume ? plant.volume : "Select volume of water",
-      instructions: plant.instructions ? plant.instructions : "",
-      photo: plant.photo ? plant.photo : "insert photo of plant here",
-    },
-  });
+export function PlantForm({ form }: form) {
   const waterVolume = [
     {
       value: "200_ml",
@@ -93,28 +62,12 @@ export function PlantForm({ plant }: PlantProps) {
     },
   ];
 
-  async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
-    const newPlantData = prepareAddPlantData(data);
-    const plant = await fetch(`/api/plants/`, {
-      method: "POST",
-      body: newPlantData,
-    }).then(async (res) => {
-      return await res.json();
-    });
-
-    if (plant?.data?.id) {
-      router.push(`/dashboard/plants/${plant.data.id}/`);
-    }
-
-    // TODO: reply the form has been submitted
-  }
-
   return (
     <Form {...form}>
       <form
         encType="multipart/form-data"
         id="plant-form"
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit()}
         className="w-2/3 space-y-6"
       >
         <FormField
@@ -312,28 +265,18 @@ export function PlantForm({ plant }: PlantProps) {
             </FormItem>
           )}
         />
-        <div>
-          <Image
-            src={plant.photo}
-            width={70}
-            height={70}
-            className="hidden md:block rounded-full"
-            alt={`${plant.photo}'s picture`}
-          />
-
-          <FormField
-            control={form.control}
-            name="photo"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Plant Image</FormLabel>
-                <Input id="photo" type="file" />
-                <FormDescription>Choose plant image.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="photo"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Plant Image</FormLabel>
+              <Input id="photo" type="file" />
+              <FormDescription>Choose plant image.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button type="submit" value="save">
           Submit
         </Button>
