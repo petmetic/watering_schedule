@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Breadcrumbs from "@/app/features/plants/breadcrumbs";
-import { PlantForm } from "@/app/features/plants/add-plant";
+import { PlantForm } from "@/app/features/plants/plant-form";
 
 export const metadata: Metadata = {
   title: "Add Plant",
