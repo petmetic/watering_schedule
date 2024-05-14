@@ -44,6 +44,8 @@ export function PlantForm() {
   const form = useForm<z.infer<typeof formSchemaSubmit>>({
     resolver: zodResolver(formSchemaSubmit),
     defaultValues: {
+      // to populate form, add data in default values
+      // name: data.data ? data.data.name : "",
       name: "",
       location: "Select plant location",
       frequency: "0",
@@ -83,8 +85,6 @@ export function PlantForm() {
     },
   ];
 
-  const [date, setDate] = React.useState<Date>();
-
   async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
     const newPlantData = prepareAddPlantData(data);
     const plant = await fetch(`/api/plants/`, {
@@ -105,7 +105,7 @@ export function PlantForm() {
     <Form {...form}>
       <form
         encType="multipart/form-data"
-        id="add-plant"
+        id="plant-form"
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-2/3 space-y-6"
       >

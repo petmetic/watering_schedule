@@ -7,17 +7,19 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { ArrowsDown } from "@/components/ui/icons";
-import { useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 
 interface PlantProps {
   plant: PlantSchema;
 }
 
 export function PlantExtended({ plant }: PlantProps) {
-  const [clicked, setOnClick] = useState(false);
+  const router = useRouter();
+  const plantId = plant.id;
+
   const handleClick = () => {
     console.log("Edit button has been pressed");
-    setOnClick(!clicked);
+    router.push(`/dashboard/plants/${plantId}/edit`);
   };
   return (
     <Collapsible>

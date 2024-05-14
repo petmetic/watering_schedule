@@ -13,7 +13,6 @@ export default function PlantList() {
   console.log(plants);
 
   const [watered, setWatered] = useState(true);
-  const [expanded, setExpanded] = useState(false);
   const handleChange = () => {
     console.log("status has been changed");
     // todo: make a fetch request to PATCH
@@ -22,7 +21,6 @@ export default function PlantList() {
 
   const handleExpand = () => {
     console.log("component has been expanded");
-    setExpanded(!expanded);
   };
 
   if (isLoading) {
@@ -42,8 +40,6 @@ export default function PlantList() {
               key={plant.id}
               plant={plant}
               onWaterChange={handleChange}
-              onExpand={handleExpand}
-              expanded={expanded}
               watered={watered}
             />
           ))}
