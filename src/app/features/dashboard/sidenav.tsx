@@ -54,7 +54,7 @@ export default function SideNav() {
             <Link href="#" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 <EditIcon />
-                <div className="ml-4">Edit plant</div>
+                <div className="ml-4">Plant List</div>
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
