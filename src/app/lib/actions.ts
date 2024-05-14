@@ -1,3 +1,6 @@
+import { useParams } from "next/navigation";
+import useSWR from "swr";
+
 export function prepareAddPlantData(form: any) {
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
