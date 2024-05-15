@@ -35,24 +35,26 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { formSchemaSubmit } from "@/app/lib/schema";
+import { formSchemaSubmit, PlantSchemaSingle } from "@/app/lib/schema";
+import Image from "next/image";
 
 interface PlantProps {
+  plant?: PlantSchemaSingle;
   onSubmit: any;
 }
 
-export function PlantForm({ onSubmit }: PlantProps) {
+export function PlantForm({ plant, onSubmit }: PlantProps) {
   const form = useForm<z.infer<typeof formSchemaSubmit>>({
     resolver: zodResolver(formSchemaSubmit),
     defaultValues: {
-      // to populate form, add data in default values
-      // name: data.data ? data.data.name : "",
-      name: "",
-      location: "Select plant location",
-      frequency: "0",
-      volume: "Select volume of water",
-      instructions: "",
-      photo: "insert photo of plant here",
+      name: plant?.name || "",
+      location: plant?.location || "Select plant location",
+      frequency: String(plant?.frequency) || "0",
+      start: plant?.start ? new Date(plant?.start) : undefined,
+      end: plant?.end ? new Date(plant?.end) : undefined,
+      volume: plant?.volume || "Select volume of water",
+      instructions: plant?.instructions || "",
+      photo: plant?.photo || "/static/placeholder.png",
     },
   });
   const waterVolume = [
@@ -289,18 +291,29 @@ export function PlantForm({ onSubmit }: PlantProps) {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="photo"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Plant Image</FormLabel>
-              <Input id="photo" type="file" />
-              <FormDescription>Choose plant image.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div>
+          <FormField
+            control={form.control}
+            name="photo"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Plant Image</FormLabel>
+                {plant?.photo && (
+                  <Image
+                    src={plant?.photo}
+                    width={70}
+                    height={70}
+                    className="hidden md:block rounded-full"
+                    alt={`${plant?.photo}'s picture`}
+                  />
+                )}
+                <Input id="photo" type="file" />
+                <FormDescription>Choose plant image.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button type="submit" value="save">
           Submit
         </Button>

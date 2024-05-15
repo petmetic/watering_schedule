@@ -28,15 +28,15 @@ export async function GET(
   }
 }
 
-// export async function PATCH(request: Request) {
-//   const formData = await request.formData();
-//   const res = await fetch(`http://127.0.0.1:8000/plants/${id}`, {
-//     method: "PATCH",
-//     headers: {
-//       // Bearer: "mytoken",
-//     },
-//     body: formData,
-//   });
-//   const data = await res.json();
-//   return NextResponse.json({ data });
-// }
+export async function PATCH(request: Request) {
+  const formData = await request.formData();
+  const res = await fetch(`http://127.0.0.1:8000/plants/${id}`, {
+    method: "PATCH",
+    headers: {
+      // Bearer: "mytoken",
+    },
+    body: formData,
+  });
+  const data = await res.json();
+  return NextResponse.json({ data });
+}

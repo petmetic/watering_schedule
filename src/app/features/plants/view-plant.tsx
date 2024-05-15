@@ -5,13 +5,11 @@ import useSWR from "swr";
 import { ProgressBar } from "@/app/features/progress-bar";
 
 import { PlantSmall } from "@/app/features/plants/plant-small";
-import { PlantSchema } from "@/app/lib/schema";
+import { PlantSchemaSingle } from "@/app/lib/schema";
 
 interface PlantProps {
-  plant: PlantSchema;
+  plant: PlantSchemaSingle;
   onWaterChange: any;
-  onExpand: any;
-  expanded: boolean;
   watered: boolean;
 }
 

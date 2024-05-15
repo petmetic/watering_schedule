@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { PlantSchema } from "@/app/lib/schema";
+import { PlantSchema, PlantSchemaSingle } from "@/app/lib/schema";
 import {
   Collapsible,
   CollapsibleContent,
@@ -10,7 +10,7 @@ import { ArrowsDown } from "@/components/ui/icons";
 import { useRouter, useParams } from "next/navigation";
 
 interface PlantProps {
-  plant: PlantSchema;
+  plant: PlantSchemaSingle;
 }
 
 export function PlantExtended({ plant }: PlantProps) {

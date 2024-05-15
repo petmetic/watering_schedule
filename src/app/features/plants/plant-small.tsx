@@ -10,16 +10,14 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { PlantSchema } from "@/app/lib/schema";
+import { PlantSchemaSingle } from "@/app/lib/schema";
 import { PlantExtended } from "@/app/features/plants/plantExtended";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "@/components/ui/icons";
 
 interface PlantProps {
-  plant: PlantSchema;
+  plant: PlantSchemaSingle;
   onWaterChange?: any;
-  onExpand?: any;
-  expanded: boolean;
   watered: boolean;
 }
 

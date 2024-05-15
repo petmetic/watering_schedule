@@ -1,12 +1,11 @@
 "use client";
 import { PlantForm } from "@/app/features/plants/plant-form";
 import * as z from "zod";
-import { formSchemaSubmit, PlantSchema } from "@/app/lib/schema";
+import { formSchemaSubmit, PlantSchemaSingle } from "@/app/lib/schema";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
 
 interface PlantProps {
-  plant?: PlantSchema;
   onSubmit: any;
 }
 export function AddPlant() {

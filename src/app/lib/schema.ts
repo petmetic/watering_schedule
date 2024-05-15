@@ -8,7 +8,6 @@ export const formSchemaSubmit = z.object({
     message: "Plant location must be at least 2 characters.",
   }),
   frequency: z.string(),
-  // frequency: z.number(),
   volume: z.string().min(1, {
     message: "",
   }),
