@@ -35,12 +35,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { prepareAddPlantData } from "@/app/lib/actions";
-import { useRouter } from "next/navigation";
 import { formSchemaSubmit } from "@/app/lib/schema";
 
-export function PlantForm() {
-  const router = useRouter();
+interface PlantProps {
+  onSubmit: any;
+}
+
+export function PlantForm({ onSubmit }: PlantProps) {
   const form = useForm<z.infer<typeof formSchemaSubmit>>({
     resolver: zodResolver(formSchemaSubmit),
     defaultValues: {
@@ -84,22 +85,6 @@ export function PlantForm() {
       name: "special care",
     },
   ];
-
-  async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
-    const newPlantData = prepareAddPlantData(data);
-    const plant = await fetch(`/api/plants/`, {
-      method: "POST",
-      body: newPlantData,
-    }).then(async (res) => {
-      return await res.json();
-    });
-
-    if (plant?.data?.id) {
-      router.push(`/dashboard/plants/${plant.data.id}/`);
-    }
-
-    // TODO: reply the form has been submitted
-  }
 
   return (
     <Form {...form}>
