@@ -18,7 +18,6 @@ export function PlantExtended({ plant }: PlantProps) {
   const plantId = plant.id;
 
   const handleClick = () => {
-    console.log("Edit button has been pressed");
     router.push(`/dashboard/plants/${plantId}/edit`);
   };
   return (

@@ -30,7 +30,7 @@ export async function GET(
 
 export async function PATCH(request: Request) {
   const formData = await request.formData();
-  const res = await fetch(`http://127.0.0.1:8000/plants/${id}`, {
+  const res = await fetch("http://127.0.0.1:8000/plants/", {
     method: "PATCH",
     headers: {
       // Bearer: "mytoken",

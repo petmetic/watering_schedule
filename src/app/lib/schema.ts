@@ -86,7 +86,7 @@ export const FormSchemaSingle = z.object({
   location: z.string().min(2, {
     message: "Plant location must be at least 2 characters.",
   }),
-  frequency: z.coerce.number(),
+  frequency: z.number(),
   volume: z.string().min(1, {
     message: "",
   }),

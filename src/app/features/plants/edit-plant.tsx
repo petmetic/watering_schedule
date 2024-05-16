@@ -14,9 +14,9 @@ export function EditPlant() {
   const { id } = useParams<{ id: string }>();
   const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
 
+  let oldData = data;
   async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
     console.log("PATCH request is to be run.");
-    let oldData = data;
     const editPlantData = prepareEditPlantData(data, oldData);
     const plant = await fetch(`/api/plants/`, {
       method: "PATCH",
