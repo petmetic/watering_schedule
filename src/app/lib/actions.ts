@@ -26,8 +26,8 @@ export function prepareEditPlantData(form: any, data: any) {
 
   let updatedData: { [key: string]: any } = {};
 
-  let oldData = JSON.stringify(data.data);
-  let newData = JSON.stringify(form);
+  let oldData = data.data;
+  let newData = form;
 
   console.log("old data", oldData);
   console.log("new data", newData);
