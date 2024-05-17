@@ -32,24 +32,15 @@ export async function PATCH(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  console.log("PATCH request is to be executed");
   const id = params.id;
-  console.log("id of plant to be patched", id);
-  const random = Math.random();
-  const jsonData = await request.json();
-  console.log(jsonData);
-  // const id = formData.id;
-  const res = await fetch(
-    `http://127.0.0.1:8000/plants/${id}/?format=json&_nocache=${random}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        // Bearer: "mytoken",
-      },
-      body: JSON.stringify(jsonData),
+  const formData = await request.formData();
+  const res = await fetch(`http://127.0.0.1:8000/plants/${id}/`, {
+    method: "PATCH",
+    headers: {
+      // Bearer: "mytoken",
     },
-  );
+    body: formData,
+  });
   const data = await res.json();
   console.log("response data", data);
   return NextResponse.json({ data });
