@@ -41,14 +41,18 @@ export function prepareEditPlantData(form, data) {
 
   let allKeys = new Set([...Object.keys(data), ...Object.keys(newData)]);
 
+  updatedData["id"] = oldData["id"];
+
   for (const key of allKeys) {
     let oldValue = oldData[key];
     let newValue = newData[key];
 
-    if (key === "id") {
-      updatedData["id"] = oldData["id"];
-    } else if (oldValue !== newValue) {
-      updatedData[key] = newValue;
+    if (oldValue !== newValue) {
+      if (oldData[key] == "photo") {
+        updatedData["photo"] = (file, file.name);
+      } else {
+        updatedData[key] = newValue;
+      }
     }
   }
 

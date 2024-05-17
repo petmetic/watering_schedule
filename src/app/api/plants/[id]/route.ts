@@ -44,9 +44,10 @@ export async function PATCH(
     {
       method: "PATCH",
       headers: {
+        "Content-Type": "application/json",
         // Bearer: "mytoken",
       },
-      body: jsonData,
+      body: JSON.stringify(jsonData),
     },
   );
   const data = await res.json();
