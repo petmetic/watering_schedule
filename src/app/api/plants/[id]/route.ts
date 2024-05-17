@@ -28,15 +28,28 @@ export async function GET(
   }
 }
 
-export async function PATCH(request: Request) {
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
+  console.log("PATCH request is to be executed");
+  const id = params.id;
+  console.log("id of plant to be patched", id);
+  const random = Math.random();
   const formData = await request.formData();
-  const res = await fetch("http://127.0.0.1:8000/plants/", {
-    method: "PATCH",
-    headers: {
-      // Bearer: "mytoken",
+  console.log(formData);
+  // const id = formData.id;
+  const res = await fetch(
+    `http://127.0.0.1:8000/plants/${id}/?format=json&_nocache=${random}`,
+    {
+      method: "PATCH",
+      headers: {
+        // Bearer: "mytoken",
+      },
+      body: formData,
     },
-    body: formData,
-  });
+  );
   const data = await res.json();
+  console.log("response data", data);
   return NextResponse.json({ data });
 }

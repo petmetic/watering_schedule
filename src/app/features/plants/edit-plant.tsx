@@ -16,7 +16,6 @@ export function EditPlant() {
 
   let oldData = data;
   async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
-    console.log("PATCH request is to be run.");
     const editPlantData = prepareEditPlantData(data, oldData);
     const plant = await fetch(`/api/plants/`, {
       method: "PATCH",

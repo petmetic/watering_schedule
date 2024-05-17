@@ -1,3 +1,10 @@
+import { PlantSchema, PlantSchemaSingle } from "@/app/lib/schema";
+
+interface DataProps {
+  form: PlantSchema;
+  data: PlantSchemaSingle;
+}
+
 export function prepareAddPlantData(form: any) {
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
@@ -20,17 +27,17 @@ export function prepareAddPlantData(form: any) {
   return formData;
 }
 
-export function prepareEditPlantData(form: any, data: any) {
+export function prepareEditPlantData({ form, data }: DataProps) {
   const photoField = document.getElementById("photo") as HTMLInputElement;
   const file = photoField?.files ? photoField.files[0] : null;
 
   let updatedData: { [key: string]: any } = {};
 
-  let oldData = data.data;
+  let oldData = data;
   let newData = form;
 
-  console.log("old data", oldData);
-  console.log("new data", newData);
+  console.log("old data", data);
+  console.log("new data", form);
 
   let allKeys = new Set([...Object.keys(data), ...Object.keys(newData)]);
 
