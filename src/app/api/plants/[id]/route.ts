@@ -36,8 +36,8 @@ export async function PATCH(
   const id = params.id;
   console.log("id of plant to be patched", id);
   const random = Math.random();
-  const formData = await request.formData();
-  console.log(formData);
+  const jsonData = await request.json();
+  console.log(jsonData);
   // const id = formData.id;
   const res = await fetch(
     `http://127.0.0.1:8000/plants/${id}/?format=json&_nocache=${random}`,
@@ -46,7 +46,7 @@ export async function PATCH(
       headers: {
         // Bearer: "mytoken",
       },
-      body: formData,
+      body: jsonData,
     },
   );
   const data = await res.json();
