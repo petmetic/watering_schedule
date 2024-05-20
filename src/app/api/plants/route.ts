@@ -20,7 +20,6 @@ export async function GET(request: Request) {
   if (parsed.success) {
     return NextResponse.json({ data });
   } else {
-    console.log(parsed.error);
     return NextResponse.json({ error: parsed.error });
   }
 }

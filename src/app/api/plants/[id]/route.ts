@@ -23,7 +23,6 @@ export async function GET(
   if (parsed.success) {
     return NextResponse.json({ data });
   } else {
-    console.log(parsed.error);
     return NextResponse.json({ error: parsed.error });
   }
 }
@@ -32,12 +31,9 @@ export async function PATCH(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  console.log("PATCH request is to be executed");
   const id = params.id;
-  console.log("id of plant to be patched", id);
   const random = Math.random();
   const editPlantData = await request.formData();
-  console.log("editPlantData", editPlantData);
   const res = await fetch(
     `http://127.0.0.1:8000/plants/${id}/?format=json&_nocache=${random}`,
     {
@@ -49,6 +45,5 @@ export async function PATCH(
     },
   );
   const data = await res.json();
-  console.log("response data", data);
   return NextResponse.json({ data });
 }
