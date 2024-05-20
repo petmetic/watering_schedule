@@ -294,7 +294,7 @@ export function PlantForm({ plant, onSubmit }: PlantProps) {
           <FormField
             control={form.control}
             name="photo"
-            render={({ field }) => (
+            render={({ field: { value, onChange, ...fieldProps } }) => (
               <FormItem>
                 <FormLabel>Plant Image</FormLabel>
                 {plant?.photo && (
@@ -306,7 +306,16 @@ export function PlantForm({ plant, onSubmit }: PlantProps) {
                     alt={`${plant?.photo}'s picture`}
                   />
                 )}
-                <Input id="photo" type="file" />
+                <Input
+                  {...fieldProps}
+                  id="photo"
+                  name="photo"
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) =>
+                    onChange(event.target.files && event.target.files[0])
+                  }
+                />
                 <FormDescription>Choose plant image.</FormDescription>
                 <FormMessage />
               </FormItem>

@@ -21,7 +21,12 @@ export const formSchemaSubmit = z.object({
   end: z.date({
     required_error: "An end date is required.",
   }),
-  photo: z.any(),
+  photo: z
+    .instanceof(File)
+    .refine((file) => file.size < 5000000, {
+      message: "Your resume must be less than 5MB.",
+    })
+    .optional(),
 });
 
 export const plantSchema = z.object({
@@ -73,7 +78,12 @@ export const FormSchemaGetSingle = z.object({
   end: z.string({
     required_error: "An end date is required.",
   }),
-  photo: z.any(),
+  photo: z
+    .instanceof(File)
+    .refine((file) => file.size < 5000000, {
+      message: "Your resume must be less than 5MB.",
+    })
+    .optional(),
 });
 
 export type PlantSchemaGetSingle = z.infer<typeof FormSchemaGetSingle>;
@@ -100,7 +110,12 @@ export const FormSchemaSingle = z.object({
   end: z.string({
     required_error: "An end date is required.",
   }),
-  photo: z.any(),
+  photo: z
+    .instanceof(File)
+    .refine((file) => file.size < 5000000, {
+      message: "Your resume must be less than 5MB.",
+    })
+    .optional(),
 });
 
 export type PlantSchemaSingle = z.infer<typeof FormSchemaSingle>;

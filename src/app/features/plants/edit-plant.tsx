@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { ProgressBar } from "@/app/features/progress-bar";
 import * as z from "zod";
 import { formSchemaSubmit } from "@/app/lib/schema";
-import { prepareAddPlantData, prepareEditPlantData } from "@/app/lib/actions";
+import { prepareEditPlantData } from "@/app/lib/actions";
 import { PlantForm } from "@/app/features/plants/plant-form";
 
 export function EditPlant() {

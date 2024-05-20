@@ -1,19 +1,9 @@
-import { PlantSchema, PlantSchemaSingle } from "@/app/lib/schema";
-
-// interface DataProps {
-//   form: PlantSchema;
-//   data: PlantSchemaSingle;
-// }
-
-export function prepareAddPlantData(form: any) {
-  const photoField = document.getElementById("photo") as HTMLInputElement;
-  const file = photoField?.files ? photoField.files[0] : null;
-
+export function prepareAddPlantData(form: unknown) {
   let formData = new FormData();
 
   for (const [key, value] of Object.entries(form)) {
-    if (key === "photo" && file !== null) {
-      formData.set("photo", file);
+    if (key === "photo" && value !== null) {
+      formData.set("photo", value);
     } else if (key === "start") {
       let start = form.start.toISOString();
       formData.set("start", start);
@@ -28,27 +18,20 @@ export function prepareAddPlantData(form: any) {
   return formData;
 }
 
-export function prepareEditPlantData(newData, data) {
-  const photoField = document.getElementById("photo") as HTMLInputElement;
-  const file = photoField?.files ? photoField.files[0] : null;
-  console.log("file", file);
-
+export function prepareEditPlantData(newData: FormData, data: unknown) {
   let updatedData = new FormData();
 
   let oldData = data.data;
-  console.log(oldData);
-  console.log(newData);
 
   updatedData.set("id", oldData["id"]);
-  console.log(updatedData);
 
   for (const key in oldData) {
     let oldValue = oldData[key];
     let newValue = key in newData ? newData[key] : undefined;
 
     if (oldValue !== newValue) {
-      if (key === "photo" && file !== null) {
-        updatedData.set("photo", file);
+      if (key === "photo" && newValue) {
+        updatedData.set("photo", newValue);
       } else if (key === "start") {
         let start = newValue.toISOString();
         updatedData.set("start", start);
@@ -60,9 +43,5 @@ export function prepareEditPlantData(newData, data) {
       }
     }
   }
-  console.log(updatedData);
-
-  updatedData.toString();
-  console.log("updated data in  prepareEditFunction", updatedData);
   return updatedData;
 }
