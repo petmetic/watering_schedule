@@ -54,7 +54,6 @@ export function PlantForm({ plant, onSubmit }: PlantProps) {
       end: plant?.end ? new Date(plant?.end) : undefined,
       volume: plant?.volume || "Select volume of water",
       instructions: plant?.instructions || "",
-      photo: plant?.photo || "/static/placeholder.png",
     },
   });
   const waterVolume = [

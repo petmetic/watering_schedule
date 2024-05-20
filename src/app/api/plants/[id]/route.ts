@@ -36,18 +36,16 @@ export async function PATCH(
   const id = params.id;
   console.log("id of plant to be patched", id);
   const random = Math.random();
-  const jsonData = await request.json();
-  console.log(jsonData);
-  // const id = formData.id;
+  const editPlantData = await request.formData();
+  console.log("editPlantData", editPlantData);
   const res = await fetch(
     `http://127.0.0.1:8000/plants/${id}/?format=json&_nocache=${random}`,
     {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
         // Bearer: "mytoken",
       },
-      body: JSON.stringify(jsonData),
+      body: editPlantData,
     },
   );
   const data = await res.json();

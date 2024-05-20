@@ -16,10 +16,10 @@ export function EditPlant() {
 
   let oldData = data;
   async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
-    const jsonData = prepareEditPlantData(data, oldData);
+    const editPlantData = prepareEditPlantData(data, oldData);
     const plant = await fetch(`/api/plants/${id}/`, {
       method: "PATCH",
-      body: JSON.stringify(jsonData),
+      body: editPlantData,
     }).then(async (res) => {
       return await res.json();
     });
