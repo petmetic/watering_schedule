@@ -10,13 +10,11 @@ import { PlantSchema } from "@/app/lib/schema";
 
 interface PlantProps {
   plant: PlantSchema;
-  onWaterChange: any;
   onExpand: any;
   expanded: boolean;
-  watered: boolean;
 }
 
-export function ViewPlant({ watered }: PlantProps) {
+export function ViewPlant() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { id } = useParams<{ id: string }>();
@@ -33,7 +31,7 @@ export function ViewPlant({ watered }: PlantProps) {
   } else {
     return (
       <div>
-        <PlantSmall plant={data.data} watered={watered} />
+        <PlantSmall plant={data.data} />
       </div>
     );
   }
