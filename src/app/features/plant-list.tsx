@@ -13,7 +13,6 @@ export default function PlantList() {
 
   const [watered, setWatered] = useState(true);
   const handleChange = () => {
-    console.log("status has been changed");
     // todo: make a fetch request to PATCH
     setWatered(!watered);
   };
