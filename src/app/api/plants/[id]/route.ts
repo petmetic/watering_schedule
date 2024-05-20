@@ -7,8 +7,9 @@ export async function GET(
 ) {
   const id = params.id;
   const random = Math.random();
+
   const res = await fetch(
-    `http://127.0.0.1:8000/plants/${id}/?format=json&_nocache=${random}`,
+    `${process.env["SERVER_ENDPOINT"]}/plants/${id}/?format=json&_nocache=${random}`,
     {
       next: { revalidate: 1 },
       headers: {
