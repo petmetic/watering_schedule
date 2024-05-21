@@ -45,7 +45,7 @@ export function PlantSmall({ plant }: PlantProps) {
       <CardContent>
         <div className="flex items-center space-x-2">
           <Switch id="plant-watered" onCheckedChange={handleIsWatered} />
-          <Label htmlFor="airplane-mode">
+          <Label htmlFor="plant-watered">
             {watered ? " Watered" : "Water me"}
           </Label>
         </div>
