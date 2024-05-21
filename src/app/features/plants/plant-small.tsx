@@ -10,12 +10,12 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { PlantSchema } from "@/app/lib/schema";
+import { PlantSchemaSingle } from "@/app/lib/schema";
 import { PlantExtended } from "@/app/features/plants/plantExtended";
 import { useState } from "react";
 
 interface PlantProps {
-  plant: PlantSchema;
+  plant: PlantSchemaSingle;
 }
 
 export function PlantSmall({ plant }: PlantProps) {

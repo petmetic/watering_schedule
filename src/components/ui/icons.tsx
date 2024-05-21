@@ -5,6 +5,7 @@ import {
   Frown,
   Leaf,
   PlusCircle,
+  Sprout,
 } from "lucide-react";
 
 const Logo = () => {
@@ -31,4 +32,16 @@ const ArrowsDown = () => {
   return <ChevronsDown className="text-primary" />;
 };
 
-export { AddIcon, Logo, EditIcon, FrownIcon, ArrowDown, ArrowsDown };
+const ImagePlaceHolder = () => {
+  return <Sprout className="text-primary" />;
+};
+
+export {
+  AddIcon,
+  Logo,
+  EditIcon,
+  FrownIcon,
+  ArrowDown,
+  ArrowsDown,
+  ImagePlaceHolder,
+};

@@ -8,7 +8,6 @@ export const formSchemaSubmit = z.object({
     message: "Plant location must be at least 2 characters.",
   }),
   frequency: z.string(),
-  // frequency: z.number(),
   volume: z.string().min(1, {
     message: "",
   }),
@@ -22,11 +21,15 @@ export const formSchemaSubmit = z.object({
   end: z.date({
     required_error: "An end date is required.",
   }),
-  photo: z.any(),
+  photo: z
+    .instanceof(File)
+    .refine((file) => file.size < 5000000, {
+      message: "Your resume must be less than 5MB.",
+    })
+    .optional(),
 });
 
 export const plantSchema = z.object({
-  // id: z.number(),
   name: z.string().min(2, {
     message: "Plant name must be at least 2 characters.",
   }),
@@ -54,7 +57,7 @@ export type PlantSchema = z.infer<typeof plantSchema>;
 
 export const formSchemaGet = z.array(plantSchema);
 
-const FormSchemaGetSingle = z.object({
+export const FormSchemaGetSingle = z.object({
   name: z.string().min(2, {
     message: "Plant name must be at least 2 characters.",
   }),
@@ -75,5 +78,44 @@ const FormSchemaGetSingle = z.object({
   end: z.string({
     required_error: "An end date is required.",
   }),
-  photo: z.any(),
+  photo: z
+    .instanceof(File)
+    .refine((file) => file.size < 5000000, {
+      message: "Your resume must be less than 5MB.",
+    })
+    .optional(),
 });
+
+export type PlantSchemaGetSingle = z.infer<typeof FormSchemaGetSingle>;
+
+export const FormSchemaSingle = z.object({
+  id: z.number(),
+  name: z.string().min(2, {
+    message: "Plant name must be at least 2 characters.",
+  }),
+  location: z.string().min(2, {
+    message: "Plant location must be at least 2 characters.",
+  }),
+  frequency: z.number(),
+  volume: z.string().min(1, {
+    message: "",
+  }),
+  instructions: z.string().min(1, {
+    message: "Please provide instructions for taking care of the plant.",
+  }),
+  status: z.string().optional(),
+  start: z.string({
+    required_error: "A start date is required.",
+  }),
+  end: z.string({
+    required_error: "An end date is required.",
+  }),
+  photo: z
+    .instanceof(File)
+    .refine((file) => file.size < 5000000, {
+      message: "Your resume must be less than 5MB.",
+    })
+    .optional(),
+});
+
+export type PlantSchemaSingle = z.infer<typeof FormSchemaSingle>;

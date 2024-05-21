@@ -10,14 +10,8 @@ export default function PlantList() {
   const { data, error, isLoading } = useSWR("/api/plants", fetcher);
 
   let plants = data?.data?.results;
-  console.log(plants);
 
   const [expanded, setExpanded] = useState(false);
-
-  const handleExpand = () => {
-    console.log("component has been expanded");
-    setExpanded(!expanded);
-  };
 
   if (isLoading) {
     return (
@@ -32,12 +26,7 @@ export default function PlantList() {
       <div>
         <div className="grid auto-rows-max items-start gap-6">
           {plants.map((plant: any) => (
-            <PlantSmall
-              key={plant.id}
-              plant={plant}
-              onExpand={handleExpand}
-              expanded={expanded}
-            />
+            <PlantSmall key={plant.id} plant={plant} />
           ))}
         </div>
       </div>
