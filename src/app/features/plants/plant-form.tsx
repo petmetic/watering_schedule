@@ -39,8 +39,8 @@ import { formSchemaSubmit, PlantSchemaSingle } from "@/app/lib/schema";
 import Image from "next/image";
 
 interface PlantProps {
+  onSubmit: (data: z.infer<typeof formSchemaSubmit>) => void;
   plant?: PlantSchemaSingle;
-  onSubmit: any;
 }
 
 export function PlantForm({ plant, onSubmit }: PlantProps) {

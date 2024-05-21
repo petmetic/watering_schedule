@@ -4,10 +4,8 @@ import * as z from "zod";
 import { formSchemaSubmit, PlantSchemaSingle } from "@/app/lib/schema";
 import { prepareAddPlantData } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
+import * as React from "react";
 
-interface PlantProps {
-  onSubmit: any;
-}
 export function AddPlant() {
   const router = useRouter();
 

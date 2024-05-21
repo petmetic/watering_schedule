@@ -1,3 +1,17 @@
+import {
+  baseObjectInputType,
+  baseObjectOutputType,
+  TypeOf,
+  ZodDate,
+  ZodEffects,
+  ZodObject,
+  ZodOptional,
+  ZodString,
+  ZodType,
+  ZodTypeAny,
+  ZodTypeDef,
+} from "zod";
+
 export function prepareAddPlantData(form: unknown) {
   let formData = new FormData();
 
@@ -18,7 +32,564 @@ export function prepareAddPlantData(form: unknown) {
   return formData;
 }
 
-export function prepareEditPlantData(newData: FormData, data: unknown) {
+export function prepareEditPlantData(
+  newData: TypeOf<
+    ZodObject<
+      {
+        volume: ZodString;
+        instructions: ZodString;
+        name: ZodString;
+        start: ZodDate;
+        photo: ZodOptional<
+          ZodEffects<
+            ZodType<
+              InstanceType<{
+                prototype: File;
+                new (
+                  fileBits: BlobPart[],
+                  fileName: string,
+                  options?: FilePropertyBag,
+                ): File;
+              }>,
+              ZodTypeDef,
+              InstanceType<{
+                prototype: File;
+                new (
+                  fileBits: BlobPart[],
+                  fileName: string,
+                  options?: FilePropertyBag,
+                ): File;
+              }>
+            >,
+            InstanceType<{
+              prototype: File;
+              new (
+                fileBits: BlobPart[],
+                fileName: string,
+                options?: FilePropertyBag,
+              ): File;
+            }>,
+            InstanceType<{
+              prototype: File;
+              new (
+                fileBits: BlobPart[],
+                fileName: string,
+                options?: FilePropertyBag,
+              ): File;
+            }>
+          >
+        >;
+        location: ZodString;
+        end: ZodDate;
+        frequency: ZodString;
+        status: ZodOptional<ZodString>;
+      },
+      "strip",
+      ZodTypeAny,
+      {
+        [k_1 in keyof objectUtil.addQuestionMarks<
+          baseObjectOutputType<{
+            volume: ZodString;
+            instructions: ZodString;
+            name: ZodString;
+            start: ZodDate;
+            photo: ZodOptional<
+              ZodEffects<
+                ZodType<
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  ZodTypeDef,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>
+              >
+            >;
+            location: ZodString;
+            end: ZodDate;
+            frequency: ZodString;
+            status: ZodOptional<ZodString>;
+          }>,
+          {
+            [k in keyof baseObjectOutputType<{
+              volume: ZodString;
+              instructions: ZodString;
+              name: ZodString;
+              start: ZodDate;
+              photo: ZodOptional<
+                ZodEffects<
+                  ZodType<
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>,
+                    ZodTypeDef,
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>
+                  >,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >
+              >;
+              location: ZodString;
+              end: ZodDate;
+              frequency: ZodString;
+              status: ZodOptional<ZodString>;
+            }>]: undefined extends baseObjectOutputType<{
+              volume: ZodString;
+              instructions: ZodString;
+              name: ZodString;
+              start: ZodDate;
+              photo: ZodOptional<
+                ZodEffects<
+                  ZodType<
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>,
+                    ZodTypeDef,
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>
+                  >,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >
+              >;
+              location: ZodString;
+              end: ZodDate;
+              frequency: ZodString;
+              status: ZodOptional<ZodString>;
+            }>[k]
+              ? never
+              : k;
+          }[keyof {
+            volume: ZodString;
+            instructions: ZodString;
+            name: ZodString;
+            start: ZodDate;
+            photo: ZodOptional<
+              ZodEffects<
+                ZodType<
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  ZodTypeDef,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>
+              >
+            >;
+            location: ZodString;
+            end: ZodDate;
+            frequency: ZodString;
+            status: ZodOptional<ZodString>;
+          }]
+        >]: objectUtil.addQuestionMarks<
+          baseObjectOutputType<{
+            volume: ZodString;
+            instructions: ZodString;
+            name: ZodString;
+            start: ZodDate;
+            photo: ZodOptional<
+              ZodEffects<
+                ZodType<
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  ZodTypeDef,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>
+              >
+            >;
+            location: ZodString;
+            end: ZodDate;
+            frequency: ZodString;
+            status: ZodOptional<ZodString>;
+          }>,
+          {
+            [k in keyof baseObjectOutputType<{
+              volume: ZodString;
+              instructions: ZodString;
+              name: ZodString;
+              start: ZodDate;
+              photo: ZodOptional<
+                ZodEffects<
+                  ZodType<
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>,
+                    ZodTypeDef,
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>
+                  >,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >
+              >;
+              location: ZodString;
+              end: ZodDate;
+              frequency: ZodString;
+              status: ZodOptional<ZodString>;
+            }>]: undefined extends baseObjectOutputType<{
+              volume: ZodString;
+              instructions: ZodString;
+              name: ZodString;
+              start: ZodDate;
+              photo: ZodOptional<
+                ZodEffects<
+                  ZodType<
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>,
+                    ZodTypeDef,
+                    InstanceType<{
+                      prototype: File;
+                      new (
+                        fileBits: BlobPart[],
+                        fileName: string,
+                        options?: FilePropertyBag,
+                      ): File;
+                    }>
+                  >,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >
+              >;
+              location: ZodString;
+              end: ZodDate;
+              frequency: ZodString;
+              status: ZodOptional<ZodString>;
+            }>[k]
+              ? never
+              : k;
+          }[keyof {
+            volume: ZodString;
+            instructions: ZodString;
+            name: ZodString;
+            start: ZodDate;
+            photo: ZodOptional<
+              ZodEffects<
+                ZodType<
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>,
+                  ZodTypeDef,
+                  InstanceType<{
+                    prototype: File;
+                    new (
+                      fileBits: BlobPart[],
+                      fileName: string,
+                      options?: FilePropertyBag,
+                    ): File;
+                  }>
+                >,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>
+              >
+            >;
+            location: ZodString;
+            end: ZodDate;
+            frequency: ZodString;
+            status: ZodOptional<ZodString>;
+          }]
+        >[k_1];
+      },
+      {
+        [k_2 in keyof baseObjectInputType<{
+          volume: ZodString;
+          instructions: ZodString;
+          name: ZodString;
+          start: ZodDate;
+          photo: ZodOptional<
+            ZodEffects<
+              ZodType<
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>,
+                ZodTypeDef,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>
+              >,
+              InstanceType<{
+                prototype: File;
+                new (
+                  fileBits: BlobPart[],
+                  fileName: string,
+                  options?: FilePropertyBag,
+                ): File;
+              }>,
+              InstanceType<{
+                prototype: File;
+                new (
+                  fileBits: BlobPart[],
+                  fileName: string,
+                  options?: FilePropertyBag,
+                ): File;
+              }>
+            >
+          >;
+          location: ZodString;
+          end: ZodDate;
+          frequency: ZodString;
+          status: ZodOptional<ZodString>;
+        }>]: baseObjectInputType<{
+          volume: ZodString;
+          instructions: ZodString;
+          name: ZodString;
+          start: ZodDate;
+          photo: ZodOptional<
+            ZodEffects<
+              ZodType<
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>,
+                ZodTypeDef,
+                InstanceType<{
+                  prototype: File;
+                  new (
+                    fileBits: BlobPart[],
+                    fileName: string,
+                    options?: FilePropertyBag,
+                  ): File;
+                }>
+              >,
+              InstanceType<{
+                prototype: File;
+                new (
+                  fileBits: BlobPart[],
+                  fileName: string,
+                  options?: FilePropertyBag,
+                ): File;
+              }>,
+              InstanceType<{
+                prototype: File;
+                new (
+                  fileBits: BlobPart[],
+                  fileName: string,
+                  options?: FilePropertyBag,
+                ): File;
+              }>
+            >
+          >;
+          location: ZodString;
+          end: ZodDate;
+          frequency: ZodString;
+          status: ZodOptional<ZodString>;
+        }>[k_2];
+      }
+    >
+  >,
+  data: unknown,
+) {
   let updatedData = new FormData();
 
   let oldData = data.data;

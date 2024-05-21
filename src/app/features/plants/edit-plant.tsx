@@ -3,9 +3,10 @@ import { useParams, useRouter } from "next/navigation";
 import useSWR from "swr";
 import { ProgressBar } from "@/app/features/progress-bar";
 import * as z from "zod";
-import { formSchemaSubmit } from "@/app/lib/schema";
+import { formSchemaSubmit, PlantSchemaSingle } from "@/app/lib/schema";
 import { prepareEditPlantData } from "@/app/lib/actions";
 import { PlantForm } from "@/app/features/plants/plant-form";
+import * as React from "react";
 
 export function EditPlant() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -14,7 +15,7 @@ export function EditPlant() {
   const { id } = useParams<{ id: string }>();
   const { data, error, isLoading } = useSWR(`/api/plants/${id}`, fetcher);
 
-  let oldData = data;
+  let oldData: unknown = data;
   async function onSubmit(data: z.infer<typeof formSchemaSubmit>) {
     const editPlantData = prepareEditPlantData(data, oldData);
     const plant = await fetch(`/api/plants/${id}/`, {
