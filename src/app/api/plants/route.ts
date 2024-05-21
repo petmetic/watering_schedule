@@ -26,7 +26,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const res = await fetch("http://127.0.0.1:8000/plants/", {
+  const res = await fetch(`${process.env["SERVER_ENDPOINT"]}/plants/`, {
     method: "POST",
     headers: {
       // Bearer: "mytoken",

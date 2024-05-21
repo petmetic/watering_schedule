@@ -36,7 +36,7 @@ export async function PATCH(
   const random = Math.random();
   const editPlantData = await request.formData();
   const res = await fetch(
-    `http://127.0.0.1:8000/plants/${id}/?format=json&_nocache=${random}`,
+    `${process.env["SERVER_ENDPOINT"]}/plants/${id}/?format=json&_nocache=${random}`,
     {
       method: "PATCH",
       headers: {
