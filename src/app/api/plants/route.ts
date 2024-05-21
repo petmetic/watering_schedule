@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   // noStore();
   const random = Math.random();
   const res = await fetch(
-    `http://127.0.0.1:8000/plants/?format=json&_nocache=${random}`,
+    `${process.env["SERVER_ENDPOINT"]}/plants/?format=json&_nocache=${random}`,
     {
       // next: { revalidate: 1 },
       headers: {
@@ -20,14 +20,13 @@ export async function GET(request: Request) {
   if (parsed.success) {
     return NextResponse.json({ data });
   } else {
-    console.log(parsed.error);
     return NextResponse.json({ error: parsed.error });
   }
 }
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const res = await fetch("http://127.0.0.1:8000/plants/", {
+  const res = await fetch(`${process.env["SERVER_ENDPOINT"]}/plants/`, {
     method: "POST",
     headers: {
       // Bearer: "mytoken",

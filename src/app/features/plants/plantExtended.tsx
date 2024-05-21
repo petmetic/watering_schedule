@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { PlantSchema } from "@/app/lib/schema";
+import { PlantSchema, PlantSchemaSingle } from "@/app/lib/schema";
 import {
   Collapsible,
   CollapsibleContent,
@@ -7,12 +7,19 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { ArrowsDown } from "@/components/ui/icons";
+import { useRouter, useParams } from "next/navigation";
 
 interface PlantProps {
-  plant: PlantSchema;
+  plant: PlantSchemaSingle;
 }
 
 export function PlantExtended({ plant }: PlantProps) {
+  const router = useRouter();
+  const plantId = plant.id;
+
+  const handleClick = () => {
+    router.push(`/dashboard/plants/${plantId}/edit`);
+  };
   return (
     <Collapsible>
       <CollapsibleTrigger>
@@ -57,7 +64,11 @@ export function PlantExtended({ plant }: PlantProps) {
         </div>
 
         <CollapsibleContent>
-          <Button variant="outline" className="text-primary border-primary">
+          <Button
+            variant="outline"
+            className="text-primary border-primary"
+            onClick={handleClick}
+          >
             Edit
           </Button>
         </CollapsibleContent>
