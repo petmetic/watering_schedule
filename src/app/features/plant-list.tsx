@@ -11,11 +11,7 @@ export default function PlantList() {
 
   let plants = data?.data?.results;
 
-  const [watered, setWatered] = useState(true);
-  const handleChange = () => {
-    // todo: make a fetch request to PATCH
-    setWatered(!watered);
-  };
+  const [expanded, setExpanded] = useState(false);
 
   if (isLoading) {
     return (
@@ -30,12 +26,7 @@ export default function PlantList() {
       <div>
         <div className="grid auto-rows-max items-start gap-6">
           {plants.map((plant: any) => (
-            <PlantSmall
-              key={plant.id}
-              plant={plant}
-              onWaterChange={handleChange}
-              watered={watered}
-            />
+            <PlantSmall key={plant.id} plant={plant} />
           ))}
         </div>
       </div>

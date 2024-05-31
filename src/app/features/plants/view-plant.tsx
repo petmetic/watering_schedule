@@ -9,11 +9,9 @@ import { PlantSchemaSingle } from "@/app/lib/schema";
 
 interface PlantProps {
   plant: PlantSchemaSingle;
-  onWaterChange: any;
-  watered: boolean;
 }
 
-export function ViewPlant({ watered }: PlantProps) {
+export function ViewPlant() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { id } = useParams<{ id: string }>();
@@ -30,7 +28,7 @@ export function ViewPlant({ watered }: PlantProps) {
   } else {
     return (
       <div>
-        <PlantSmall plant={data.data} watered={watered} />
+        <PlantSmall plant={data.data} />
       </div>
     );
   }
