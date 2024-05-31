@@ -12,7 +12,8 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { PlantSchemaSingle } from "@/app/lib/schema";
 import { PlantExtended } from "@/app/features/plants/plantExtended";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { prepareStatusChange } from "@/app/lib/actions";
 
 interface PlantProps {
   plant: PlantSchemaSingle;
@@ -20,11 +21,29 @@ interface PlantProps {
 
 export function PlantSmall({ plant }: PlantProps) {
   const [watered, setWatered] = useState(false);
-  const handleIsWatered = () => {
+  const handleChangeWatered = (event: ChangeEvent<HTMLInputElement>) => {
+    const checkWatered = event.target.checked;
+    setWatered(checkWatered);
     console.log("status has been changed");
-    // todo: make a fetch request to PATCH
-    setWatered(!watered);
+    console.log("watered", watered);
   };
+
+  let plantId = plant?.id;
+  console.log("status", watered);
+
+  //const handleChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
+  //     const value = event.target.checked;
+  //     setValue(label, value);
+  //   };
+
+  // async function changeStatus = await fetch(`/api/plants/${plantId}/`, {
+  //   method: "PATCH",
+  //   body: watered,
+  // }).then(async (res) => {
+  //   return await res.json();
+  // });
+
+  // add button to manage errors
 
   return (
     <Card className={cn("w-[700px]")}>
@@ -44,7 +63,11 @@ export function PlantSmall({ plant }: PlantProps) {
       </CardContent>
       <CardContent>
         <div className="flex items-center space-x-2">
-          <Switch id="plant-watered" onCheckedChange={handleIsWatered} />
+          <Switch
+            id="plant-watered"
+            // checked={watered}
+            onCheckedChange={handleChangeWatered}
+          />
           <Label htmlFor="plant-watered">
             {watered ? " Watered" : "Water me"}
           </Label>
